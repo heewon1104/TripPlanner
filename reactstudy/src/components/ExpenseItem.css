@@ -1,0 +1,104 @@
+.align-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.All{
+    height: 1300px;
+  }
+
+.header-set{
+    margin-top: 30px;
+    width: 100%;
+    height: 20%;
+}
+
+.schdule-set{
+    height: 2000px;
+  }
+.footer-set{
+    height: 10%;
+}
+.Title{
+    font-size: 45px;
+}
+.Tag-list{
+    width: 100%;
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #999999;
+}
+.Tag{
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 25px;
+}
+.schdule-set{
+    width: 100%;
+}
+.title-list{
+    width: 100%;
+    flex-direction: row;
+}
+.schdule-title{
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+.weather-button{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.week-button-list{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+.week-button-prev{
+    position: absolute;
+    left: 15%;
+    font-size: 18px;
+}
+.week-button-next{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.add-schedule-item{
+    position: absolute;
+    right: 30%;
+    font-size: 18px;
+}
+.add-transportation{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.schdule-tag{
+    width: 100%;
+    flex-direction: row;
+}
+.schdule-item{
+    height: 30px;
+    width: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid #999999;
+    margin-top: -1px;
+}
+.schdule-content{
+    width: 100%;
+    flex-direction: row;
+}
+.schdule-content-list{
+    height: 100%;
+    width: 132px;
+
+    position: relative;
+}
