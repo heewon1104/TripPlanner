@@ -1,11 +1,13 @@
 
 import './App.css';
-import Mylogin from './login'
+import LoginPage from './login'
+/*import MainPage from './main'*/
+
 
 function App() {
   return (
     <div className="App">
-      <Mylogin />
+      <LoginPage />
     </div>
   );
 }
