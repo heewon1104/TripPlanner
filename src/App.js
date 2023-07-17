@@ -1,8 +1,6 @@
-
-import './App.css';
-import LoginPage from './login'
-/*import MainPage from './main'*/
-
+import "./App.css";
+import LoginPage from "./login";
+/*import MainPage from "./main";*/
 
 function App() {
   return (
