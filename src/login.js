@@ -13,19 +13,19 @@ function LoginPage() {
   let [modalOpen, setModalOpen] = useState(false);
 
   const validationSchema = Yup.object().shape({
-    inputId: Yup.string().required("아이디를 입력하세요."),
-    inputPw: Yup.string().required("비밀번호를 입력하세요."),
+    login_id: Yup.string().required("아이디를 입력하세요."),
+    login_password: Yup.string().required("비밀번호를 입력하세요."),
   });
 
   const formik = useFormik({
     initialValues: {
-      inputId: "",
-      inputPw: "",
+      login_id: "",
+      login_password: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values, { setSubmitting }) => {
       console.log("Form Values:", values);
-      if (!values.inputId || !values.inputPw) {
+      if (!values.login_id || !values.login_password) {
         alert("아이디와 비밀번호를 입력해주세요.");
         setSubmitting(false);
         return;
@@ -33,23 +33,26 @@ function LoginPage() {
       axios
         .post("/", null, {
           params: {
-            user_id: values.inputId,
-            user_pw: values.inputPw,
+            user_id: values.login_id,
+            user_pw: values.login_password,
           },
         })
         .then((res) => {
           console.log(res);
-          console.log("res.data.userId :: ", res.data.userId);
-          console.log("res.data.msg :: ", res.data.msg);
-          if (res.data.userId === undefined) {
-            alert("입력하신 id 가 일치하지 않습니다.");
-          } else if (res.data.userId === null) {
-            alert("입력하신 비밀번호 가 일치하지 않습니다.");
-          } else if (res.data.userId === values.inputId) {
-            sessionStorage.setItem("user_id", values.inputId);
+          if (res.data.success) {
+            // 로그인 성공 처리
+            sessionStorage.setItem("user_id", values.login_id);
+            window.location.href = "/main"; // 로그인 성공 시 메인 페이지로 이동
+          } else {
+            // 로그인 실패 처리
+            if (res.data.msg === "user_id") {
+              alert("입력하신 아이디가 일치하지 않습니다.");
+            } else if (res.data.msg === "user_pw") {
+              alert("입력하신 비밀번호가 일치하지 않습니다.");
+            } else {
+              alert("로그인 실패");
+            }
           }
-          // 작업 완료 되면 페이지 이동(새로고침)
-          document.location.href = "/main";
         })
         .catch()
         .finally(() => {
@@ -74,13 +77,13 @@ function LoginPage() {
                   className="input_login"
                   type="text"
                   placeholder="user ID"
-                  name="inputId"
-                  value={formik.values.inputId}
+                  name="login_id"
+                  value={formik.values.login_id}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.inputId && formik.errors.inputId && (
-                  <div className="error_message">{formik.errors.inputId}</div>
+                {formik.touched.login_id && formik.errors.login_id && (
+                  <div className="error_message">{formik.errors.login_id}</div>
                 )}
               </div>
               <div id="inputbox_border" className="home_box2 box">
@@ -89,14 +92,17 @@ function LoginPage() {
                   className="input_login"
                   type="password"
                   placeholder="user PW"
-                  name="inputPw"
-                  value={formik.values.inputPw}
+                  name="login_password"
+                  value={formik.values.login_password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.inputPw && formik.errors.inputPw && (
-                  <div className="error_message">{formik.errors.inputPw}</div>
-                )}
+                {formik.touched.login_password &&
+                  formik.errors.login_password && (
+                    <div className="error_message">
+                      {formik.errors.login_password}
+                    </div>
+                  )}
               </div>
               <button
                 className="btn_login"

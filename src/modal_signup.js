@@ -11,31 +11,25 @@ import simple_logo_img from "./assets/simple_logo.PNG";
 import "./modal_signup.css";
 
 const idAndPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //숫자+영문인지 확인하는 코드
-const isNotBlank = (value) => {
-  return value.trim() !== "";
-}; //아이디 비밀번호 공백확인 코드
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("이름을 입력해주세요."),
-  birth: Yup.date().required("생년월일을 선택해주세요."),
-  gender: Yup.string().required("성별을 선택해주세요."),
-  // validationSchema 내부의 user_id 및 user_pw 유효성 검사 코드 수정
-  user_id: Yup.string()
-    .test("isNotBlank", "아이디를 입력해주세요.", isNotBlank)
-    .matches(idAndPasswordRegex, "영문+숫자 8자리 이상 입력하세요.")
-    .required("아이디를 입력해주세요."),
+  signup_name: Yup.string().required("이름을 입력해주세요."),
+  signup_birth: Yup.date().required("생년월일을 선택해주세요."),
+  signup_gender: Yup.string().required("성별을 선택해주세요."),
+  // validationSchema 내부의 signup_id 및 signup_pw 유효성 검사 코드 수정
+  signup_id: Yup.string()
+    .required("아이디를 입력해주세요.")
+    .matches(idAndPasswordRegex, "영문+숫자 8자리 이상 입력하세요."),
 
-  user_pw: Yup.string()
-    .test("isNotBlank", "비밀번호를 입력해주세요.", isNotBlank)
-    .matches(idAndPasswordRegex, "영문+숫자 8자리 이상 입력하세요.")
-    .required("비밀번호를 입력해주세요."),
+  signup_password: Yup.string()
+    .required("비밀번호를 입력해주세요.")
+    .matches(idAndPasswordRegex, "영문+숫자 8자리 이상 입력하세요."),
 
-  user_pw2: Yup.string()
-    .test("isNotBlank", "비밀번호 확인을 입력해주세요.", isNotBlank)
-    .oneOf([Yup.ref("user_pw"), null], "비밀번호가 일치하지 않습니다.")
-    .required("비밀번호 확인을 입력해주세요."),
+  signup_password2: Yup.string()
+    .required("비밀번호 확인을 입력해주세요.")
+    .oneOf([Yup.ref("signup_password"), null], "비밀번호가 일치하지 않습니다."),
 
-  nickname: Yup.string().required("닉네임을 입력해주세요."),
+  signup_nickname: Yup.string().required("닉네임을 입력해주세요."),
 });
 
 function Modalsignup(props) {
@@ -71,13 +65,13 @@ function Modalsignup(props) {
       <Modal.Body>
         <Formik
           initialValues={{
-            name: "",
-            birth: null,
-            gender: "",
-            user_id: "",
-            user_pw: "",
-            user_pw2: "",
-            nickname: "",
+            signup_name: "",
+            signup_birth: null,
+            signup_gender: "",
+            signup_id: "",
+            signup_password: "",
+            signup_password2: "",
+            signup_nickname: "",
           }}
           validationSchema={validationSchema}
           onSubmit={onSubmitHandler}
@@ -90,12 +84,12 @@ function Modalsignup(props) {
                   <div className="signup_txt input_box">이름</div>
                   <Field
                     type="text"
-                    name="name"
+                    name="signup_name"
                     className="input_name input"
                     placeholder="홍길동"
                   />
                   <ErrorMessage
-                    name="name"
+                    name="signup_name"
                     component="div"
                     className="error_message"
                   />
@@ -106,15 +100,15 @@ function Modalsignup(props) {
                     id="signup_birth"
                     className="input_birth input"
                     type="date"
-                    dateFormat="yyyy.MM.dd"
-                    shouldCloseOnSelect
-                    maxDate={new Date("2009-07-12")}
-                    selected={values.birth}
-                    onChange={(date) => setFieldValue("birth", date)}
+                    max="2009-07-12"
+                    value={values.signup_birth}
+                    onChange={(e) =>
+                      setFieldValue("signup_birth", e.target.value)
+                    }
                     placeholderText="날짜를 선택하세요"
                   />
                   <ErrorMessage
-                    name="birth"
+                    name="signup_birth"
                     component="div"
                     className="error_message"
                   />
@@ -125,20 +119,20 @@ function Modalsignup(props) {
                     <Field
                       id="radio_btn_1"
                       type="radio"
-                      name="gender"
+                      name="signup_gender"
                       value="man"
                     />
                     <label htmlFor="radio_btn">남자</label>
                     <Field
                       id="radio_btn_2"
                       type="radio"
-                      name="gender"
+                      name="signup_gender"
                       value="woman"
                     />
                     <label htmlFor="radio_btn">여자</label>
                   </RadioGroup>
                   <ErrorMessage
-                    name="gender"
+                    name="signup_gender"
                     component="div"
                     className="error_message"
                   />
@@ -150,12 +144,12 @@ function Modalsignup(props) {
                   <div className="signup_txt input_box">아이디</div>
                   <Field
                     type="text"
-                    name="user_id"
+                    name="signup_id"
                     className="input_id input"
                     placeholder="영문+숫자 8자리 이상"
                   />
                   <ErrorMessage
-                    name="user_id"
+                    name="signup_id"
                     component="div"
                     className="error_message"
                   />
@@ -164,12 +158,12 @@ function Modalsignup(props) {
                   <div className="signup_txt input_box">비밀번호</div>
                   <Field
                     type="password"
-                    name="user_pw"
+                    name="signup_password"
                     className="input_pw input"
                     placeholder="영문+숫자 8자리 이상"
                   />
                   <ErrorMessage
-                    name="user_pw"
+                    name="signup_password"
                     component="div"
                     className="error_message"
                   />
@@ -178,12 +172,12 @@ function Modalsignup(props) {
                   <div className="signup_txt input_box">비밀번호 확인</div>
                   <Field
                     type="password"
-                    name="user_pw2"
+                    name="signup_password2"
                     className="input_pw input"
                     placeholder="비밀번호 확인"
                   />
                   <ErrorMessage
-                    name="user_pw2"
+                    name="signup_password2"
                     component="div"
                     className="error_message"
                   />
@@ -192,12 +186,12 @@ function Modalsignup(props) {
                   <div className="signup_txt input_box">닉네임</div>
                   <Field
                     type="text"
-                    name="nickname"
+                    name="signup_nickname"
                     className="input_nickname input"
                     placeholder="닉네임"
                   />
                   <ErrorMessage
-                    name="nickname"
+                    name="signup_nickname"
                     component="div"
                     className="error_message"
                   />
