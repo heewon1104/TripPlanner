@@ -29,7 +29,9 @@ const MainPage = () => {
         </div>
       </header>
       <div class="girdbox">
-        <div class="grid">그리드 박스</div>
+        <div class="grid">
+          <Gridlayout></Gridlayout>
+        </div>
       </div>
     </div>
   );
