@@ -2,19 +2,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
-.modal_wrap {
+.Smodal_wrap {
     flex-direction: column;
     justify-content: center;
-    width: 50%;
-    height: 60%;
+    width: 80%;
+    height: 90%;
     border-radius: 5%;
     position: absolute;
-    top:20%;
-    left:25%;
-    background:#eee;
-    z-index: 2;
+    top: 5%;
+    left: 10%;
+    background: #eee;
+    z-index: 999;
 }
 .modal_background {
     position: fixed;
@@ -32,7 +31,7 @@
     flex-direction: column;
     justify-content: center;
 }
-.modal-title{
+.Smodal-title{
     width: 100%;
     height: 10%;
     position: absolute;
@@ -42,10 +41,21 @@
     font-weight: 700;
 }
 .content-set{
+    display: flex;
+    flex-direction: row;
+
     width: 100%;
-    height: 92%;
+    height: 620px;
     margin-top: 8%;
 }
+.textsets{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 30%;
+}
+
 .input-column{
     margin-top: 2.5%;
     margin-bottom: 2.5%;
@@ -76,6 +86,11 @@
     font-weight: 700;
 }
 .input-column-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     width: 75%;
     height: 100%;
 
@@ -92,6 +107,11 @@
     padding-left: 10px;   
 }
 .input-column-content-starttime{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     width: 100%;
     height: 50%;
 }
@@ -138,3 +158,212 @@
 
     flex-direction: row;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+.maps{
+    height: 630px;
+    width: 70%;
+}
+
+ #map {
+    height: 630px;
+  }
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 630px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+  
+  #infowindow-content {
+    display: none;
+  }
+  
+  #map #infowindow-content {
+    display: inline;
+  }
+  
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    font-family: Roboto;
+    padding: 0;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+  
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+
+
+
+
+
+
+
+
+
+
+  #map {
+    height: 630px;
+  }
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 630px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+  
+  #infowindow-content {
+    display: none;
+  }
+  
+  #map #infowindow-content {
+    display: inline;
+  }
+  
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    font-family: Roboto;
+    padding: 0;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+  
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  
+  #map {
+    width: 100%;
+    height: 630px; /* 적절한 높이 설정 */
+  }
+
+
+  .submitbtn{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+  }

@@ -1,10 +1,11 @@
 import './Transport.css'
 
 
-function Transport() {
-    return (<div>
-        <div className='modal_background'></div>
-        <div className="modal_wrap align-center">
+function Transport({isOpen, closeModal}) {
+
+    return (<div style={{ display: isOpen ? "block" : "none" }}>
+        <div className='modal_background' onClick={closeModal}></div>
+        <div className="Tmodal_wrap align-center">
             <div className="modal_transportset align-center">
                 <div className='modal_transportset-map align-center'>
 
