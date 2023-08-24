@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
@@ -17,9 +17,7 @@ const store = configureStore({
   // devTools: process.env.NODE_ENV !== "production", // 개발 환경에서만 DevTools 활성화
 });
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(
+createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <App />
   </Provider>
