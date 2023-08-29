@@ -8,9 +8,9 @@ console.log(DB_HOST , DB_USER , DB_PASSWORD)
 
 const db = mysql.createConnection({
     host : 'localhost',
-    user : 'root',
-    password : 'jk8618829@',
-    database : 'tripPlanner'
+    user : DB_USER,
+    password : DB_PASSWORD,
+    database : DB_TABLE_NAME
 })
 
 const getPlanner = async (req , res) => {
