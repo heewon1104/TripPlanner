@@ -7,8 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const reactNavigate = useNavigate(); // 'history' 변수명을 변경 v5(useHistory)->v6(useNavigate)
   //  modal state - 회원가입창
   let [modalOpen, setModalOpen] = useState(false);
 
@@ -42,7 +44,7 @@ function LoginPage() {
           if (res.data.success) {
             // 로그인 성공 처리
             sessionStorage.setItem("user_id", values.login_id);
-            window.location.href = "/main"; // 로그인 성공 시 메인 페이지로 이동
+            reactNavigate.push("/main"); // 수정된 부분: history를 사용하여 페이지 이동
           } else {
             // 로그인 실패 처리
             if (res.data.msg === "user_id") {

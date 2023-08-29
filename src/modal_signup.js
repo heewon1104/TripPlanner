@@ -6,7 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { RadioGroup } from "./RadioGroup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "./action_user";
-
 import simple_logo_img from "./assets/simple_logo.PNG";
 import "./modal_signup.css";
 
@@ -38,10 +37,11 @@ function Modalsignup(props) {
   const onSubmitHandler = (values, { setSubmitting }) => {
     console.log("Submitted Form Values:", values);
     dispatch(registerUser(values)).then((response) => {
+      console.log("Server Response:", response); // 서버 응답 로그를 추가
       if (response.payload.success) {
-        props.history.push("/");
+        props.navigate.push("/");
       } else {
-        alert("Error");
+        alert("Error: " + response.payload.message); // 서버에서 전달한 오류 메시지 출력
       }
       setSubmitting(false);
     });
@@ -101,11 +101,11 @@ function Modalsignup(props) {
                     className="input_birth input"
                     type="date"
                     max="2009-07-12"
-                    value={values.signup_birth}
+                    value={values.signup_birth || ""} //빈 문자열로 초기화
                     onChange={(e) =>
                       setFieldValue("signup_birth", e.target.value)
                     }
-                    placeholderText="날짜를 선택하세요"
+                    placeholder="날짜를 선택하세요"
                   />
                   <ErrorMessage
                     name="signup_birth"
