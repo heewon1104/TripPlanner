@@ -1,9 +1,10 @@
 import "./main.css";
 // import Grid from "./gridlayout"; //gridlayout 컴포넌트 불러오기
-import logo2_img from "./assets/logo2.PNG";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; // React Router의 Link 컴포넌트를 import
 import PlaceImageBox from "./PlaceImageBox"; // PlaceImageBox 컴포넌트 불러오기
+import Header from "./header";
+import recommendations from "./recommendations"; // 추천 여행지 데이터 참조
 
 const MainPage = () => {
   const [dDay, setDDay] = useState("");
@@ -34,30 +35,8 @@ const MainPage = () => {
 
   return (
     <div className="mainbox ">
-      {/* 헤더 메뉴 */}
-      <header className="header-set align-center">
-        <img className="img_logo2" src={logo2_img} alt="img"></img>
-        <div className="align-center Tag-list">
-          <div className="Tagbox">
-            <div className="align-center Tag">홈</div>
-          </div>
-          <div className="Tagbox">
-            <div className="align-center Tag">플래너</div>
-          </div>
-          <div className="Tagbox">
-            <div className="align-center Tag">경비계산 / 준비물</div>
-          </div>
-          <div className="Tagbox">
-            <div className="align-center Tag">관광지</div>
-          </div>
-          <div className="Tagbox">
-            <div className="align-center Tag">커뮤니티</div>
-          </div>
-          <div className="Tagbox">
-            <div className="align-center Tag">오류문의</div>
-          </div>
-        </div>
-      </header>
+      {/*header*/}
+      <Header></Header>
       {/* body */}
       <div className="content_body">
         <div className="content1">
@@ -79,26 +58,13 @@ const MainPage = () => {
           <div className="content2_">
             <div className="place_age content2_txt">20대 추천 여행지 Top5</div>
             <div className="place-image-boxes">
-              <PlaceImageBox
-                imageUrl="./assets/busan.jpg"
-                placeName="Top1 부산"
-              />
-              <PlaceImageBox
-                imageUrl="이미지2의 URL"
-                placeName="Top2 여행지2"
-              />
-              <PlaceImageBox
-                imageUrl="이미지3의 URL"
-                placeName="Top3 여행지3"
-              />
-              <PlaceImageBox
-                imageUrl="이미지4의 URL"
-                placeName="Top4 여행지4"
-              />
-              <PlaceImageBox
-                imageUrl="이미지5의 URL"
-                placeName="Top5 여행지5"
-              />
+              {recommendations.twenties.map((place, index) => (
+                <PlaceImageBox
+                  key={index}
+                  imageUrl={place.imageUrl}
+                  placeName={place.placeName}
+                />
+              ))}
             </div>
           </div>
           <div className="content2_">
@@ -106,26 +72,13 @@ const MainPage = () => {
               여성 추천 여행지 Top5
             </div>
             <div className="place-image-boxes">
-              <PlaceImageBox
-                imageUrl="이미지1의 URL"
-                placeName="Top1 여행지1"
-              />
-              <PlaceImageBox
-                imageUrl="이미지2의 URL"
-                placeName="Top2 여행지2"
-              />
-              <PlaceImageBox
-                imageUrl="이미지3의 URL"
-                placeName="Top3 여행지3"
-              />
-              <PlaceImageBox
-                imageUrl="이미지4의 URL"
-                placeName="Top4 여행지4"
-              />
-              <PlaceImageBox
-                imageUrl="이미지5의 URL"
-                placeName="Top5 여행지5"
-              />
+              {recommendations.womens.map((place, index) => (
+                <PlaceImageBox
+                  key={index}
+                  imageUrl={place.imageUrl}
+                  placeName={place.placeName}
+                />
+              ))}
             </div>
           </div>
         </div>
