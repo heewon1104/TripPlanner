@@ -26,7 +26,6 @@ const postSchedule = async (req , res) => { // 비동기 함수로 변경
     }
 }
 
-
 const updateSchedule = (req , res) => {
 
 }
@@ -51,3 +50,4 @@ const deleteSchedule = async (req , res) => {
 }
 
 export {postSchedule, updateSchedule, deleteSchedule}
+

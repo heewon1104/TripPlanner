@@ -2,6 +2,7 @@ import styles from './ExpenseCalculationAndSupplies.module.css'
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Header from "../header";
 
 function ExpenseCalculationAndSupplies() {
     const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
@@ -13,7 +14,7 @@ function ExpenseCalculationAndSupplies() {
     const navigate = useNavigate();
 
     const goTomain = () => {
-        navigate("/");
+        navigate("/schedule");
     }
 
     const [expenseData, setExpenseData] = useState([]);
@@ -399,17 +400,7 @@ function ExpenseCalculationAndSupplies() {
     
     return (
         <div className={styles['All'] + ' ' + styles['align-center']}>
-            <header className={styles['header-set'] + ' ' + styles['align-center']}>
-                <div className={styles['Title']}> </div>
-                <div className={styles['Tag-list']}>
-                    <div className={styles['Tag']}>홈</div>
-                    <div className={styles['Tag']} onClick={goTomain}>플래너</div>
-                    <div className={styles['Tag']}>경비계산 / 준비물</div>
-                    <div className={styles['Tag']}>관광지</div>
-                    <div className={styles['Tag']}>커뮤니티</div>
-                    <div className={styles['Tag']}>오류문의</div>
-                </div>
-            </header>
+            <Header></Header>
     
             <div className={styles['main-set']}>
                 <div className={styles['calculator-set'] + ' ' + styles['border-right']}>

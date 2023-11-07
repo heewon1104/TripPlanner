@@ -9,26 +9,23 @@ import PlannerWeather from "./components/PlannerWeather";
 import ScheduleItem from "./components/ScheduleItem";
 import SchedulePage from "./components/SchedulePage"
 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={};
-  }
+import LoginPage from "./login";
+import MainPage from "./main";
+import Community from "./community";
 
-  render(){
-
+function App(){
     return (
-      <div>
+      <BrowserRouter>
           <Routes>
-            {/* 웹 서비스 소개 페이지 */}
-            <Route path="/" element={<SchedulePage />} />
-            {/* <SignIn /> */}
-            <Route path="/cal" element={<ExpenseCalculationAndSupplies />} />
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/schedule" element={<SchedulePage />} />
+            <Route path="/expense" element={<ExpenseCalculationAndSupplies />} />
           </Routes>
-      </div>
+      </BrowserRouter>
 
     );
-  }
 }
 
 export default App;

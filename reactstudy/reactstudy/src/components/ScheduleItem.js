@@ -431,27 +431,3 @@ export default ScheduleItem;
 
 //https://www.google.co.kr/maps/dir/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

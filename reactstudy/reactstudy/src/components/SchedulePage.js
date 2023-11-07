@@ -5,6 +5,7 @@ import PlannerWeather from './PlannerWeather'
 import { useNavigate } from "react-router-dom";
 import ScheduleModal from "./ScheduleModal"
 import axios from 'axios';
+import Header from "../header";
 
 function SchedulePage() {
 
@@ -26,7 +27,7 @@ function SchedulePage() {
     const navigate = useNavigate();
 
     const goToC = () => {
-        navigate("/cal");
+        navigate("/expense");
     }
 
     // time 객체를 int로 변환해 분으로 계산하는 함수 
@@ -189,7 +190,7 @@ function SchedulePage() {
     };
     
     const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
-    const serverPort = 80; // 서버가 3000번 포트에서 실행되고 있는 경우
+    const serverPort = 80; 
 
      useEffect(() => {
         const fetchData = async () => {
@@ -296,23 +297,14 @@ function SchedulePage() {
         setData([...data, newSchedule]);
       };
 
+    
+
     return (<div className= 'SAll align-center'>
         <ScheduleItem isOpen={isModalOpen} closeModal={closeModal} onSave={setData} editedSchedule={editedSchedule} addNewSchedule={addNewSchedule}
         scheduleData={data}  />
         <PlannerWeather isOpen={WeatherModalOpen} closeModal={closweatherModal} />
         <ScheduleModal isOpen={selectedSchedule !== null} closeModal={closeScheduleModal} scheduleData={selectedSchedule}/>
-        <header className='Sheader-set align-center'>
-            <div className='align-center Title'> </div>
-            <div className='align-center Tag-list'>
-                <div className='align-center Tag'>홈</div>
-                <div className='align-center Tag'>플래너</div>
-                <div className='align-center Tag' onClick={goToC}>경비계산 / 준비물</div>
-                <div className='align-center Tag'>관광지</div>
-                <div className='align-center Tag'>커뮤니티</div>
-                <div className='align-center Tag'>오류문의</div>
-            </div>
-        </header>
-
+        <Header></Header>
         <div id="schedlue-set" className='schdule-set align-center'>
             <div className='title-list align-center'>
                 <div className="schdule-title">시간표 1</div>
@@ -325,37 +317,20 @@ function SchedulePage() {
             <div className="week-button-list align-center">
                 <button className="add-schedule-item" onClick={openModal}>시간표 추가</button>
             </div>
-                <div className='schdule align-center'>
-                    <div className='schdule-item align-center'>
-                        <div className='week-top align-center border-right'>시간/요일</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>00시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>01시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>02시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>03시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>04시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>05시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>06시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>07시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>08시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>09시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>10시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>11시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>12시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>13시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>14시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>15시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>16시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>17시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>18시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>19시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>20시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>21시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>22시</div>
-                        <div className='schdule-item align-center border-right schdule-content-list'>23시</div>
-                    </div>
-                    {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
-                        <div key={dayIndex} className={`schdule-item align-center border-right-gray`}>
-                            <div className="week-top align-center">{renderDayByIndex(dayIndex)}</div>
+                <table className='schdule align-center'>
+                    <tr>
+                        <td className='week-top align-center border-right'>시간/요일</td>
+
+                        {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
+                            <td key={dayIndex} className={`schdule-item align-center border-right-gray`}></td>
+                        ))}
+                    </tr>
+
+                    <tr>
+                        <td className='schdule-item align-center border-right schdule-content-list'>00시</td>
+
+                        {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
+                        <td rowspan='24' key={dayIndex}>
                             {filterScheduleByWeek(data, currentWeekStartDate).map((item) => {
                                 if (item.day === dayIndex + 1) {
                                     return (
@@ -385,9 +360,12 @@ function SchedulePage() {
                                 }
                                 return null;
                             })}
-                        </div>
+                        </td>
                     ))}
-                </div>
+                    </tr>
+
+                    
+                </table>
             </div>
 
             <footer className='footer-set align-center'>
