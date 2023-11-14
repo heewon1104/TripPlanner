@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const bodyParser = require("body-parser");
+const crypto = require("crypto");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cors = require("cors");
@@ -65,9 +66,6 @@ app.use(
   })
 );
 
-// pbkdf2-password 설정
-const hasher = pbkdf2Password();
-
 // Passport LocalStrategy 설정
 passport.use(
   new LocalStrategy(
@@ -79,35 +77,35 @@ passport.use(
       console.log("passport: local-login 호출");
 
       // MySQL에서 사용자 정보 조회
-      db.query("SELECT* FROM user WHERE id = ?", [user_id], (err, results) => {
-        console.log("쿼리 실행중");
-        if (err) {
-          console.log("LocalStrategy MySQL Error", err);
-          return done(err);
-        }
-        if (!results[0]) {
-          return done(null, false, { message: "사용자를 찾을 수 없습니다." });
-        }
-        const user = results[0];
-
-        hasher(
-          { password: user_pw, salt: user.salt },
-          (err, pass, salt, hash) => {
-            if (err) {
-              return done(err);
-            }
-
-            if (hash === user.pw) {
-              console.log("LocalStrategy : ", user);
-              done(null, user);
-            } else {
-              return done(null, false, {
-                message: "비밀번호가 일치하지 않습니다.",
-              });
-            }
+      db.query(
+        "SELECT* FROM users WHERE signup_id = ?",
+        [user_id],
+        (err, results) => {
+          if (err) {
+            console.log("LocalStrategy MySQL Error", err);
+            return done(err);
           }
-        );
-      });
+          if (!results[0]) {
+            return done(null, false, { message: "사용자를 찾을 수 없습니다." });
+          }
+          const user = results[0];
+
+          const inputPasswordHash = crypto
+            .createHash("sha256")
+            .update(user_pw)
+            .update(user.salt)
+            .digest("base64");
+          if (inputPasswordHash === user.signup_password) {
+            console.log("LocalStrategy : ", user);
+            done(null, user);
+          } else {
+            console.log("비밀번호가 일치하지 않습니다.");
+            return done(null, false, {
+              message: "비밀번호가 일치하지 않습니다.",
+            });
+          }
+        }
+      );
     }
   )
 );
