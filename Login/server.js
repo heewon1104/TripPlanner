@@ -3,10 +3,10 @@ const mysql = require("mysql");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const bodyParser = require("body-parser");
-const pbkdf2Password = require("pbkdf2-password");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const port = 80;
@@ -18,10 +18,10 @@ app.listen(port, () => {
 
 // MySQL 연결 설정
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "1211",
-  database: "tripplanner",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATA_BASE,
 });
 
 // MySQL 연결 테스트
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: "your_secret_key", // 세션 암호화를 위한 비밀 키
+    secret: process.env.SESSION_KEY, // 세션 암호화를 위한 비밀 키
     resave: false,
     saveUninitialized: true,
     expiration: 3600000, // 세션 만료 시간 (1시간)
@@ -47,11 +47,10 @@ app.use(
       tableName: "sessions",
     },
     store: new MySQLStore({
-      host: "localhost",
-      port: 3306,
-      user: "root",
-      password: "1211",
-      database: "tripplanner",
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATA_BASE,
     }),
   })
 );
@@ -59,7 +58,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   cors({
-    origin: "http://localhost:3000", // 클라이언트 주소
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,UPDATE",
     credentials: true,
     allowedHeaders: "Content-Type",
@@ -124,7 +123,7 @@ passport.deserializeUser((id, done) => {
   console.log("deserializeUser : ", id);
 
   //MySQL에서 사용자 정보 조회
-  db.query("SELECT * FROM user WHERE id = ?", [id], (err, results) => {
+  db.query("SELECT * FROM users WHERE id = ?", [id], (err, results) => {
     if (err) done(err);
     if (!results[0]) done(err);
 
