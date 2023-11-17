@@ -1,6 +1,6 @@
 
 import mysql from "mysql2/promise"
-import { DB_HOST, DB_PASSWORD, DB_TABLE_NAME, DB_USER } from "./env.js"
+import { DB_HOST, DB_PASSWORD, DB_DATABASE_NAME, DB_USER } from "./env.js"
 
 // mySql db에 연결, 각 항목별로 입력해주시면 됩니다.
 

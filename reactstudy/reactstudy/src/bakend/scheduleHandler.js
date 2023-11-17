@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise"
-import { DB_HOST, DB_PASSWORD, DB_TABLE_NAME, DB_USER } from "./env.js"
+import { DB_HOST, DB_PASSWORD, DB_DATABASE_NAME, DB_USER } from "./env.js"
 
 const createConnection = async () => {
     const connection = await mysql.createConnection({
@@ -48,6 +48,7 @@ const deleteSchedule = async (req , res) => {
         res.sendStatus(500);
     }
 }
+
 
 export {postSchedule, updateSchedule, deleteSchedule}
 
