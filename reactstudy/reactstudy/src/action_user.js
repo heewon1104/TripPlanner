@@ -2,19 +2,22 @@ import axios from "axios";
 import { LOGIN_USER, REGISTER_USER } from "./types";
 
 const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
-const serverPort = 80; 
+const loginserverPort = 81; 
+const signupserverPort = 80; 
 
 export function loginUser(dataToSubmit) {
-  fetch(`${serverHost}:${serverPort}/api/login_page`, {
+  console.log(`${serverHost}:${loginserverPort}/api/login_page`);
+
+  fetch(`${serverHost}:${loginserverPort}/api/login_page`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(dataToSubmit), 
+    body: JSON.stringify(dataToSubmit),
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); 
+        return response.json();
       } else {
         throw new Error('Network response was not ok');
       }
@@ -27,8 +30,9 @@ export function loginUser(dataToSubmit) {
     });
 }
 
+
 export function registerUser(dataToSubmit) {
-  fetch(`${serverHost}:${serverPort}/api/signup_page`, {
+  fetch(`${serverHost}:${signupserverPort}/api/signup_page`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

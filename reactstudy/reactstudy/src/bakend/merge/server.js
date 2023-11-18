@@ -10,7 +10,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const port = 80;
+const port = 81;
 
 // 서버 시작
 app.listen(port, () => {
@@ -19,10 +19,10 @@ app.listen(port, () => {
 
 // MySQL 연결 설정
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATA_BASE,
+  host: 'jhdb98.cuy7pwybpmhj.ap-northeast-2.rds.amazonaws.com',
+  user: 'manager2',
+  password: 'manager2!',
+  database: 'testusers'
 });
 
 // MySQL 연결 테스트
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: process.env.SESSION_KEY, // 세션 암호화를 위한 비밀 키
+    secret: "MNEO827&@&*MO%$^@&***&^&^%$(*(--=))", // 세션 암호화를 위한 비밀 키
     resave: false,
     saveUninitialized: true,
     expiration: 3600000, // 세션 만료 시간 (1시간)
@@ -48,10 +48,10 @@ app.use(
       tableName: "sessions",
     },
     store: new MySQLStore({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATA_BASE,
+      host: 'jhdb98.cuy7pwybpmhj.ap-northeast-2.rds.amazonaws.com',
+      user: 'manager2',
+      password: 'manager2!',
+      database: 'testusers',
     }),
   })
 );
@@ -140,13 +140,12 @@ app.post(
   })
 );
 
-// 로그인 성공 시 처리
+// 다음 두 엔드포인트 추가
 app.get("/api/login_success", (req, res) => {
   console.log("로그인 성공!");
   res.status(200).json({ message: "로그인 성공", success: true });
 });
 
-// 로그인 실패 시 처리
 app.get("/api/login_failure", (req, res) => {
   console.log("로그인 실패");
   res.status(500).json({ message: "로그인 실패", success: false });

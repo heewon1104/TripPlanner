@@ -94,8 +94,8 @@ function SchedulePage() {
     
     const [startDate, setStartDate] = useState([]);
     const [endDate, setEndDate] = useState([]);
-    const initialStartDate = new Date("2023-09-01");
-    const initialEndDate = new Date("2023-09-20");
+    const initialStartDate = new Date("2023-11-14");
+    const initialEndDate = new Date("2023-12-20");
     const locationName = "도쿄"
     const user_id = 0
 
@@ -299,80 +299,105 @@ function SchedulePage() {
 
     
 
-    return (<div className= 'SAll align-center'>
-        <ScheduleItem isOpen={isModalOpen} closeModal={closeModal} onSave={setData} editedSchedule={editedSchedule} addNewSchedule={addNewSchedule}
-        scheduleData={data}  />
-        <PlannerWeather isOpen={WeatherModalOpen} closeModal={closweatherModal} />
-        <ScheduleModal isOpen={selectedSchedule !== null} closeModal={closeScheduleModal} scheduleData={selectedSchedule}/>
-        <Header></Header>
-        <div id="schedlue-set" className='schdule-set align-center'>
-            <div className='title-list align-center'>
-                <div className="schdule-title">시간표 1</div>
-                <button className='weather-button' onClick={openweatherModal}> 해당도시 날씨 확인하기</button>
-            </div>
-            <div className="week-button-list align-center">
-                <button className="week-button-prev" onClick={goToPreviousWeek}>이전주</button>
-                <button className="week-button-next" onClick={goToNextWeek}>다음주</button>
-            </div>
-            <div className="week-button-list align-center">
-                <button className="add-schedule-item" onClick={openModal}>시간표 추가</button>
-            </div>
-                <table className='schdule align-center'>
-                    <tr>
-                        <td className='week-top align-center border-right'>시간/요일</td>
+      return (<div className= 'SAll align-center'>
+      <ScheduleItem isOpen={isModalOpen} closeModal={closeModal} onSave={setData} editedSchedule={editedSchedule} addNewSchedule={addNewSchedule}
+      scheduleData={data}  />
+      <PlannerWeather isOpen={WeatherModalOpen} closeModal={closweatherModal} />
+      <ScheduleModal isOpen={selectedSchedule !== null} closeModal={closeScheduleModal} scheduleData={selectedSchedule}/>
+      <header className='Sheader-set align-center'>
+          <div className='align-center Title'> </div>
+          <div className='align-center Tag-list'>
+              <div className='align-center Tag'>홈</div>
+              <div className='align-center Tag'>플래너</div>
+              <div className='align-center Tag' onClick={goToC}>경비계산 / 준비물</div>
+              <div className='align-center Tag'>관광지</div>
+              <div className='align-center Tag'>커뮤니티</div>
+              <div className='align-center Tag'>오류문의</div>
+          </div>
+      </header>
 
-                        {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
-                            <td key={dayIndex} className={`schdule-item align-center border-right-gray`}></td>
-                        ))}
-                    </tr>
+      <div id="schedlue-set" className='schdule-set align-center'>
+          <div className='title-list align-center'>
+              <div className="schdule-title">시간표 1</div>
+              <button className='weather-button' onClick={openweatherModal}> 해당도시 날씨 확인하기</button>
+          </div>
+          <div className="week-button-list align-center">
+              <button className="week-button-prev" onClick={goToPreviousWeek}>이전주</button>
+              <button className="week-button-next" onClick={goToNextWeek}>다음주</button>
+          </div>
+          <div className="week-button-list align-center">
+              <button className="add-schedule-item" onClick={openModal}>시간표 추가</button>
+          </div>
+              <div className='schdule align-center'>
+                  <div className='schdule-item align-center'>
+                      <div className='week-top align-center border-right'>시간/요일</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>00시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>01시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>02시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>03시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>04시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>05시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>06시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>07시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>08시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>09시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>10시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>11시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>12시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>13시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>14시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>15시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>16시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>17시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>18시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>19시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>20시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>21시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>22시</div>
+                      <div className='schdule-item align-center border-right schdule-content-list'>23시</div>
+                  </div>
+                  {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
+                      <div key={dayIndex} className={`schdule-item align-center border-right-gray`}>
+                          <div className="week-top align-center">{renderDayByIndex(dayIndex)}</div>
+                          {filterScheduleByWeek(data, currentWeekStartDate).map((item) => {
+                              if (item.day === dayIndex + 1) {
+                                  return (
+                                      <div
+                                          key={item.index}
+                                          className={`schdule-content-add ${isDataEmpty ? 'hidden' : ''}`}
+                                          style={{
+                                              top: isDataEmpty ? '0%' : `${44 + item.topmargin * 0.8}px`,
+                                              display: isDataEmpty ? 'none' : 'block',
+                                              height: isDataEmpty ? '0px' : `${item.subtime * 0.8}px`,
+                                          }}
+                                          onClick={() => openScheduleModal(item)}
+                                      >
+                                          <p>위치: {item.start}</p>
+                                          <div className="schedule-actions">
+                                              <button onClick={(e) => {
+                                                  e.stopPropagation(); // 이벤트 전파 막음
+                                                  handleEditSchedule(item);
+                                              }}>수정</button>
+                                              <button onClick={(e) => {
+                                                  e.stopPropagation(); // 이벤트 전파 막음
+                                                  handleDeleteSchedule(item);
+                                              }}>삭제</button>
+                                          </div>
+                                      </div>
+                                  );
+                              }
+                              return null;
+                          })}
+                      </div>
+                  ))}
+              </div>
+          </div>
 
-                    <tr>
-                        <td className='schdule-item align-center border-right schdule-content-list'>00시</td>
-
-                        {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
-                        <td rowspan='24' key={dayIndex}>
-                            {filterScheduleByWeek(data, currentWeekStartDate).map((item) => {
-                                if (item.day === dayIndex + 1) {
-                                    return (
-                                        <div
-                                            key={item.index}
-                                            className={`schdule-content-add ${isDataEmpty ? 'hidden' : ''}`}
-                                            style={{
-                                                top: isDataEmpty ? '0%' : `${44 + item.topmargin * 0.8}px`,
-                                                display: isDataEmpty ? 'none' : 'block',
-                                                height: isDataEmpty ? '0px' : `${item.subtime * 0.8}px`,
-                                            }}
-                                            onClick={() => openScheduleModal(item)}
-                                        >
-                                            <p>위치: {item.start}</p>
-                                            <div className="schedule-actions">
-                                                <button onClick={(e) => {
-                                                    e.stopPropagation(); // 이벤트 전파 막음
-                                                    handleEditSchedule(item);
-                                                }}>수정</button>
-                                                <button onClick={(e) => {
-                                                    e.stopPropagation(); // 이벤트 전파 막음
-                                                    handleDeleteSchedule(item);
-                                                }}>삭제</button>
-                                            </div>
-                                        </div>
-                                    );
-                                }
-                                return null;
-                            })}
-                        </td>
-                    ))}
-                    </tr>
-
-                    
-                </table>
-            </div>
-
-            <footer className='footer-set align-center'>
-                <div>create by OYR 1조</div>
-                <div>email: OpenYearRound@naver.com</div>
-            </footer>
-    </div>)
+          <footer className='footer-set align-center'>
+              <div>create by OYR 1조</div>
+              <div>email: OpenYearRound@naver.com</div>
+          </footer>
+  </div>)
 }
 
 export default SchedulePage;

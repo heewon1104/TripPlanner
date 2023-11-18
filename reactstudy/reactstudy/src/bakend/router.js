@@ -4,6 +4,7 @@ import { deleteSchedule, postSchedule, updateSchedule } from "./scheduleHandler.
 import { getExpense, postExpense, deleteExpense, updateExpense } from "./expenseHandler.js";
 import { getSupplies, postSupplies, deleteSupplies, updateSupplies } from "./SuppliesHandler.js";
 import { Signup } from "./signupHandler.js";
+
 import { DB_HOST, DB_PASSWORD, DB_DATABASE_NAME, DB_USER } from "./env.js"
 
 const router = express.Router();
