@@ -1,8 +1,8 @@
-import "./login.css";
+import styles from "./login.module.css";
 import React, { useState } from "react";
 import logo_img from "./assets/logo.PNG";
 import Modalsignup from "./modal_signup";
-import Button from "react-bootstrap/Button";
+import Button_bst from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -10,9 +10,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
-  const reactNavigate = useNavigate(); // 'history' 변수명을 변경 v5(useHistory)->v6(useNavigate)
-  //  modal state - 회원가입창
-  let [modalOpen, setModalOpen] = useState(false);
+  const reactNavigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const validationSchema = Yup.object().shape({
     login_id: Yup.string().required("아이디를 입력하세요."),
@@ -42,11 +41,9 @@ function LoginPage() {
         .then((res) => {
           console.log(res);
           if (res.data.success) {
-            // 로그인 성공 처리
             sessionStorage.setItem("user_id", values.login_id);
-            reactNavigate.push("/main"); // 수정된 부분: history를 사용하여 페이지 이동
+            reactNavigate("/main");
           } else {
-            // 로그인 실패 처리
             if (res.data.msg === "user_id") {
               alert("입력하신 아이디가 일치하지 않습니다.");
             } else if (res.data.msg === "user_pw") {
@@ -56,27 +53,51 @@ function LoginPage() {
             }
           }
         })
-        .catch()
-        .finally(() => {
+        .catch((error) => {
+          console.error("Server Error:", error);
+          if (error.response) {
+            const errorMessage = error.response.data?.message;
+            if (error.response.status === 400) {
+              if (errorMessage === "이미 사용중인 ID 입니다.") {
+                alert("이미 사용중인 ID입니다!");
+              } else if (errorMessage === "이미 사용중인 Nickname 입니다.") {
+                alert("이미 사용중인 Nickname 입니다.");
+              }
+            } else if (
+              error.response.status === 404 ||
+              error.response.status === 500
+            ) {
+              alert("서버를 찾을 수 없습니다. 관리자에게 문의하세요.");
+            } else {
+              alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+            }
+          } else {
+            alert(
+              "서버 요청 중에 오류가 발생했습니다. 네트워크 상태를 확인하세요."
+            );
+          }
           setSubmitting(false);
         });
     },
   });
 
   return (
-    <div className="mainbox">
-      <div className="home-container">
-        <div className="img_box">
-          <div className="img_airplane"></div>
+    <div className={styles.mainbox}>
+      <div className={styles.home_container}>
+        <div className={styles.img_box}>
+          <div className={styles.img_airplane}></div>
         </div>
-        <div className="login_box">
-          <div className="home_box1 ">
-            <img className="img_logo" src={logo_img} alt="logo"></img>
+        <div className={styles.login_box}>
+          <div className={styles.home_box1}>
+            <img className={styles.img_logo} src={logo_img} alt="logo"></img>
             <form onSubmit={formik.handleSubmit}>
-              <div id="inputbox_border" className="home_box2 box">
+              <div
+                id="inputbox_border"
+                className={`${styles.home_box2} ${styles.box}`}
+              >
                 <input
                   id="login_id"
-                  className="input_login"
+                  className={styles.input_login}
                   type="text"
                   placeholder="user ID"
                   name="login_id"
@@ -85,13 +106,18 @@ function LoginPage() {
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.login_id && formik.errors.login_id && (
-                  <div className="error_message">{formik.errors.login_id}</div>
+                  <div className={styles.error_message}>
+                    {formik.errors.login_id}
+                  </div>
                 )}
               </div>
-              <div id="inputbox_border" className="home_box2 box">
+              <div
+                id="inputbox_border"
+                className={`${styles.home_box2} ${styles.box}`}
+              >
                 <input
                   id="login_pw"
-                  className="input_login"
+                  className={styles.input_login}
                   type="password"
                   placeholder="user PW"
                   name="login_password"
@@ -101,31 +127,29 @@ function LoginPage() {
                 />
                 {formik.touched.login_password &&
                   formik.errors.login_password && (
-                    <div className="error_message">
+                    <div className={styles.error_message}>
                       {formik.errors.login_password}
                     </div>
                   )}
               </div>
               <button
-                className="btn_login"
+                className={styles.btn_login}
                 type="submit"
                 disabled={formik.isSubmitting}
               >
                 Sign in
               </button>
-              <div className="home_box3">
+              <div className={styles.home_box3}>
                 <div>
-                  <Button
+                  <Button_bst
                     id="btn_signup"
                     variant="primary"
                     onClick={() => {
                       setModalOpen(true);
-                      console.log("click signup");
                     }}
                   >
                     Sign up
-                  </Button>
-                  {/*회원가입 버튼*/}
+                  </Button_bst>
                   <Modalsignup
                     show={modalOpen}
                     onHide={() => setModalOpen(false)}
@@ -135,11 +159,11 @@ function LoginPage() {
             </form>
           </div>
 
-          <div className="copyright">
-            <div className="copyright_txt">
+          <div className={styles.copyright}>
+            <div className={styles.copyright_txt}>
               ⓒ 2023. OYR_PROJECT All Rights Reserved.
             </div>
-            <div className="copyright_txt">OpenYearRound@naver.com</div>
+            <div className={styles.copyright_txt}>OpenYearRound@naver.com</div>
           </div>
         </div>
       </div>

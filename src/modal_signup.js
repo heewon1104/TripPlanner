@@ -7,7 +7,7 @@ import { RadioGroup } from "./RadioGroup";
 import { useDispatch } from "react-redux";
 import { registerUser } from "./action_user";
 import simple_logo_img from "./assets/simple_logo.PNG";
-import "./modal_signup.css";
+import styles from "./modal_signup.module.css";
 
 const idAndPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; //숫자+영문인지 확인하는 코드
 
@@ -85,7 +85,7 @@ function Modalsignup(props) {
     >
       <Modal.Header closeButton>
         <img
-          className="simple_logo"
+          className={styles.simple_logo}
           src={simple_logo_img}
           alt="simple_logo"
         ></img>
@@ -108,26 +108,30 @@ function Modalsignup(props) {
           {({ values, isSubmitting, setFieldValue }) => (
             <Form>
               {/* 개인정보 입력 칸 */}
-              <div className="signup_box">
-                <div className="signup_input_name">
-                  <div className="signup_txt input_box">이름</div>
+              <div className={styles.signup_box}>
+                <div className={styles.signup_input_name}>
+                  <div className={`${styles.signup_txt} ${styles.input_box}`}>
+                    이름
+                  </div>
                   <Field
                     type="text"
                     name="signup_name"
-                    className="input_name input"
+                    className={`${styles.input_name} ${styles.input}`}
                     placeholder="홍길동"
                   />
                   <ErrorMessage
                     name="signup_name"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
-                <div className="signup_input_birth">
-                  <div className="signup_txt input_box">생년월일</div>
+                <div className={styles.signup_input_birth}>
+                  <div className={`${styles.signup_txt} ${styles.input_box}`}>
+                    생년월일
+                  </div>
                   <Field
                     id="signup_birth"
-                    className="input_birth input"
+                    className={`${styles.input_birth} ${styles.input}`}
                     type="date"
                     max="2009-07-12"
                     value={values.signup_birth || ""} //빈 문자열로 초기화
@@ -139,12 +143,16 @@ function Modalsignup(props) {
                   <ErrorMessage
                     name="signup_birth"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
-                <div className="signup_input_gender">
-                  <div className="signup_txt input_box">성별</div>
-                  <RadioGroup className="input_radio input">
+                <div className={styles.signup_input_gender}>
+                  <div className={`${styles.input_name} ${styles.input}`}>
+                    성별
+                  </div>
+                  <RadioGroup
+                    className={`${styles.input_radio} ${styles.input}`}
+                  >
                     <Field
                       id="radio_btn_1"
                       type="radio"
@@ -163,70 +171,78 @@ function Modalsignup(props) {
                   <ErrorMessage
                     name="signup_gender"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
               </div>
               {/* 아이디 및 비밀번호 입력 칸 */}
-              <div className="signup_box">
-                <div className="signup_input_id">
-                  <div className="signup_txt input_box">아이디</div>
+              <div className={styles.signup_box}>
+                <div className={styles.signup_input_id}>
+                  <div className={`${styles.input_name} ${styles.input}`}>
+                    아이디
+                  </div>
                   <Field
                     type="text"
                     name="signup_id"
-                    className="input_id input"
+                    className={`${styles.input_id} ${styles.input}`}
                     placeholder="영문+숫자 8자리 이상"
                   />
                   <ErrorMessage
                     name="signup_id"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
-                <div className="signup_input_pw">
-                  <div className="signup_txt input_box">비밀번호</div>
+                <div className={styles.signup_input_pw}>
+                  <div className={`${styles.input_name} ${styles.input}`}>
+                    비밀번호
+                  </div>
                   <Field
                     type="password"
                     name="signup_password"
-                    className="input_pw input"
+                    className={`${styles.input_pw} ${styles.input}`}
                     placeholder="영문+숫자 8자리 이상"
                   />
                   <ErrorMessage
                     name="signup_password"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
-                <div className="signup_input_pw2">
-                  <div className="signup_txt input_box">비밀번호 확인</div>
+                <div className={styles.signup_input_pw2}>
+                  <div className={`${styles.input_name} ${styles.input}`}>
+                    비밀번호 확인
+                  </div>
                   <Field
                     type="password"
                     name="signup_password2"
-                    className="input_pw input"
+                    className={`${styles.input_pw} ${styles.input}`}
                     placeholder="비밀번호 확인"
                   />
                   <ErrorMessage
                     name="signup_password2"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
-                <div className="signup_input_id">
-                  <div className="signup_txt input_box">닉네임</div>
+                <div className={styles.signup_input_nickname}>
+                  <div className={`${styles.input_name} ${styles.input}`}>
+                    닉네임
+                  </div>
                   <Field
                     type="text"
                     name="signup_nickname"
-                    className="input_nickname input"
+                    className={`${styles.input_nickname} ${styles.input}`}
                     placeholder="닉네임"
                   />
                   <ErrorMessage
                     name="signup_nickname"
                     component="div"
-                    className="error_message"
+                    className={styles.error_message}
                   />
                 </div>
               </div>
-              <div className="btn_signup">
+              <div className={styles.btn_signup}>
                 <button
                   id="btn_signup_ok"
                   type="submit"
@@ -239,7 +255,7 @@ function Modalsignup(props) {
           )}
         </Formik>
       </Modal.Body>
-      <Modal.Footer className="footer"></Modal.Footer>
+      <Modal.Footer className={styles.footer}></Modal.Footer>
     </Modal>
   );
 }

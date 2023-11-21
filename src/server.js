@@ -26,7 +26,7 @@ app.use(
     saveUninitialized: true,
     store: new MySQLStore({
       host: "localhost",
-      port: 3306,
+      port: 3000,
       user: "root",
       password: "1211",
       database: "tripplanner",

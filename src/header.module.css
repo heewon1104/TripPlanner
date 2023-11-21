@@ -1,9 +1,9 @@
-.align-center {
+.align_center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.header-set {
+.header_set {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@
   background-repeat: no-repeat;
   /* border: 1px solid gray; */
 }
-.Tag-list {
+.Tag_list {
   width: 100%;
   flex-direction: row;
   margin-top: 30px;

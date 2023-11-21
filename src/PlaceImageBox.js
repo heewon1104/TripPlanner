@@ -1,20 +1,14 @@
 // PlaceImageBox.js
-
+import styles from "./placeImgBox.module.css";
 import React from "react";
-import PropTypes from "prop-types";
 
 const PlaceImageBox = ({ imageUrl, placeName }) => {
   return (
-    <div className="place-image-box">
-      <img src={imageUrl} alt={placeName} />
-      <div className="place-name">{placeName}</div>
+    <div>
+      <img className={styles.placeimg} src={imageUrl} alt={placeName} />
+      <p className={styles.placename}>{placeName}</p>
     </div>
   );
-};
-
-PlaceImageBox.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
-  placeName: PropTypes.string.isRequired,
 };
 
 export default PlaceImageBox;

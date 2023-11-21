@@ -1,4 +1,4 @@
-.align-center {
+.align_center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,21 +22,6 @@
 }
 .img_logo2 {
   width: 350px;
-}
-.Tag-list {
-  width: 100%;
-  flex-direction: row;
-  margin-top: 30px;
-  padding: 15px;
-}
-.Tag {
-  margin-left: 50px;
-  margin-right: 50px;
-  font-size: 15px;
-}
-.Tagbox {
-  padding-bottom: 10px;
-  border-bottom: 3px solid #0099a4;
 }
 
 /*여기서부터 내가 변경한 css*/
@@ -81,7 +66,6 @@
   margin-top: 3%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 .content2_ {
@@ -95,29 +79,11 @@
   font-weight: bolder;
   font-size: larger;
 }
-.place-image-box {
+.place_image_boxes {
   width: 10vw;
   height: 15vh;
   margin-right: 2%;
   background-color: lightgray;
-}
-.place-image-boxes {
   display: flex;
   margin-top: 1%;
-}
-.grid_body {
-  height: 50vh;
-  width: 80vw;
-  /* border: 1px solid gray; */
-  margin-top: 15px;
-}
-.grid_txt {
-  text-align: left;
-  font-size: x-large;
-  font-weight: bold;
-  font-style: italic;
-}
-.grid {
-  height: auto;
-  /* border: 1px solid gray; */
 }
