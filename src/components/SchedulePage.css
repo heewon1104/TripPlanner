@@ -1,0 +1,163 @@
+.align-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SAll{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 1800px;
+  }
+
+.Sheader-set{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 15%;
+}
+
+.schdule-set{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    height: 75%;
+  }
+.footer-set{
+    height: 10%;
+    width: 100%;
+    border-top: 3px solid #0099a4;
+}
+.Title{
+    background-image: url(./MainImg.png);
+    width: 580px;
+    height: 100px;
+    background-repeat: no-repeat;
+}
+.Tag-list{
+    width: 100%;
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 15px;
+    border-bottom: 3px solid #0099a4;
+}
+.Tag{
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 25px;
+}
+.schdule-set{
+    width: 100%;
+}
+.title-list{
+    width: 100%;
+    flex-direction: row;
+}
+.schdule-title{
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+.weather-button{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.week-button-list{
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+.week-button-prev{
+    position: absolute;
+    left: 15%;
+    font-size: 18px;
+}
+.week-button-next{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.add-schedule-item{
+    position: absolute;
+    right: 30%;
+    font-size: 18px;
+}
+.add-transportation{
+    position: absolute;
+    right: 15%;
+    font-size: 18px;
+}
+.schdule{
+    width: 100%;
+    height: 2000px;
+    position: relative;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.schdule-item{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    height: 1158px;
+    width: 120px;
+    padding-left: 15px;
+    padding-right: 21px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.border-bottom{
+    border-bottom: 2px solid #00498c;
+}
+.border-right{
+    border-right: 2px solid #00498c;
+}
+.border-right-gray{
+    height: 100%;
+    border-right: 1px solid #CCCCCC;
+}
+.week-top{
+    position: absolute;
+    top: 0px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 16px;
+    width: 120px;
+    height: 25px;
+    border-bottom: 2px solid #00498c;
+}
+.time-padding{
+    margin-left: 13px;
+    padding-right: 16px;
+}
+.schedule-padding{
+    padding-right: 16px;
+}
+.schdule-content{
+    width: 100%;
+    flex-direction: row;
+}
+.schdule-content-list{
+    position: relative;
+    top: 26px;
+}
+.schdule-content-add{
+    position: absolute;
+    top: 0px;
+    height: 36px;
+    width: 140px;
+    background-color: aqua;
+}

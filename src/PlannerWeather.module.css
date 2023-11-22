@@ -1,0 +1,29 @@
+/* PlannerWeather.css */
+.recommended-clothes {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.weather-link {
+  display: block;
+  margin-top: 10px;
+}
+
+/* Additional styles for the Bootstrap modal */
+.modal-dialog {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.modal-content {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1050;
+}

@@ -10,6 +10,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const serverHost = "http://localhost"; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
+  const loginserverPort = 81;
+
   const reactNavigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -32,11 +35,9 @@ function LoginPage() {
         return;
       }
       axios
-        .post("/", null, {
-          params: {
-            user_id: values.login_id,
-            user_pw: values.login_password,
-          },
+        .post(`${serverHost}:${loginserverPort}/api/login_page`, {
+          user_id: values.login_id,
+          user_pw: values.login_password,
         })
         .then((res) => {
           console.log(res);
@@ -55,17 +56,16 @@ function LoginPage() {
         })
         .catch((error) => {
           console.error("Server Error:", error);
+          console.error(error.response.status);
           if (error.response) {
             const errorMessage = error.response.data?.message;
-            if (error.response.status === 400) {
-              if (errorMessage === "이미 사용중인 ID 입니다.") {
-                alert("이미 사용중인 ID입니다!");
-              } else if (errorMessage === "이미 사용중인 Nickname 입니다.") {
-                alert("이미 사용중인 Nickname 입니다.");
-              }
+            if (error.response.status == 500) {
+              alert(
+                "일치하는 계정이 없습니다 아이디나 비밀번호를 다시 입력해주세요!"
+              );
             } else if (
-              error.response.status === 404 ||
-              error.response.status === 500
+              error.response.status == 404 ||
+              error.response.status == 400
             ) {
               alert("서버를 찾을 수 없습니다. 관리자에게 문의하세요.");
             } else {
@@ -142,7 +142,7 @@ function LoginPage() {
               <div className={styles.home_box3}>
                 <div>
                   <Button_bst
-                    id="btn_signup"
+                    id={styles.btn_signup}
                     variant="primary"
                     onClick={() => {
                       setModalOpen(true);

@@ -20,16 +20,16 @@ function Header() {
   };
 
   const handlePlannerClick = () => {
-    navigate("/planner");
+    navigate("/schedule");
   };
 
   const handleExpensesClick = () => {
-    navigate("/expenses");
+    navigate("/expense");
   };
 
-  const handleTourismClick = () => {
-    navigate("/tourism");
-  };
+  // const handleTourismClick = () => {
+  //   navigate("/tourism");
+  // };
 
   const handleCommunityClick = () => {
     navigate("/community");
@@ -61,12 +61,12 @@ function Header() {
           >
             경비계산 / 준비물
           </div>
-          <div
+          {/* <div
             className={`${styles.align_center} ${styles.Tag} `}
             onClick={handleTourismClick}
           >
             관광지
-          </div>
+          </div> */}
           <div
             className={`${styles.align_center} ${styles.Tag} `}
             onClick={handleCommunityClick}
