@@ -4,18 +4,30 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from "../header";
 
+import { getUserInfo } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+
 function ExpenseCalculationAndSupplies() {
+    const userInfo = useSelector((state) => state.user);
+    const getUser = getUserInfo();
+
     const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
     const serverPort = 80; // 서버가 3000번 포트에서 실행되고 있는 경우
-    const user_id = 0;
+    const user_id = getUser.signup_id;
     const [selectedExpenseIndex, setSelectedExpenseIndex] = useState(-1);
     const [selectedSuppliesIndex, setSelectedSuppliesIndex] = useState(-1);
 
     const navigate = useNavigate();
 
-    const goTomain = () => {
-        navigate("/schedule");
-    }
+    useEffect(() => {
+        const result = getUserInfo();
+        console.log("Main : " , result);
+
+        if(result.signup_id == null){
+        alert("로그인 후 이용가능합니다");
+        navigate("/");
+        }
+    }, [userInfo]); 
 
     const [expenseData, setExpenseData] = useState([]);
     const [suppliesData, setSuppliesData] = useState([]);
@@ -109,7 +121,7 @@ function ExpenseCalculationAndSupplies() {
             const newExpense = {
                 title: expenseTitle,
                 budget: expenseAmount,
-                user_id: 0,
+                user_id: getUser.signup_id,
                 planner_id: 0
             };
 
@@ -176,7 +188,7 @@ function ExpenseCalculationAndSupplies() {
             const newExpense = {
                 title: expenseToDelete.title,
                 budget: expenseToDelete.budget,
-                user_id: 0,
+                user_id: getUser.signup_id,
                 planner_id: 0
             };
 
@@ -269,7 +281,7 @@ function ExpenseCalculationAndSupplies() {
             const newSupplies = {
                 title: suppliesTitle,
                 checked: 0,
-                user_id: 0,
+                user_id: getUser.signup_id,
                 planner_id: 0
             };
     
@@ -373,7 +385,7 @@ function ExpenseCalculationAndSupplies() {
             const newSupplies = {
                 title: suppliesToDelete.title,
                 checked: suppliesToDelete.checked,
-                user_id: 0,
+                user_id: getUser.signup_id,
                 planner_id: 0
             };
 

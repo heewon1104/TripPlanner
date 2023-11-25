@@ -6,10 +6,28 @@ import PlaceImageBox from "./PlaceImageBox"; // PlaceImageBox 컴포넌트 불�
 import Header from "./header";
 import recommendations from "./recommendations"; // 추천 여행지 데이터 참조
 
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "./redux/actions";
+import { useNavigate } from "react-router-dom";
+
 const MainPage = () => {
   const [dDay, setDDay] = useState("");
   const [targetDate, setTargetDate] = useState(""); // 목표 날짜를 보여줄 상태 변수
   const [targetLocation, setTargetLocation] = useState(""); // 목표 장소를 보여줄 상태 변수
+  const navigate = useNavigate();
+
+  const userInfo = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const result = getUserInfo();
+    console.log("Main : " , result);
+
+    if(result.signup_id == null){
+      alert("로그인 후 이용가능합니다");
+      navigate("/");
+    }
+  }, [userInfo]); 
+
 
   useEffect(() => {
     // D-day 계산을 위한 날짜 설정

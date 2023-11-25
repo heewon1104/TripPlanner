@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useState , useEffect}  from "react";
 import CommunityPost from "./communityPost";
 import styles from "./community.module.css";
 import Header from "./header";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "./redux/actions";
+import { useNavigate } from "react-router-dom";
+
 const Community = () => {
+  const navigate = useNavigate();
+
+  const userInfo = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const result = getUserInfo();
+
+    if(result.signup_id == null){
+      alert("로그인 후 이용가능합니다");
+      navigate("/");
+    }
+  }, [userInfo]); 
   const [posts, setPosts] = useState([]);
 
   const handlePost = (post) => {

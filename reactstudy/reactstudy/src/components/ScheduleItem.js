@@ -3,14 +3,24 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './ScheduleItem.css'
+import { useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { getUserInfo } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedule, scheduleData }) {
+
+  const userInfo = useSelector((state) => state.user);
+  const getUser = getUserInfo();
 
   const [selectedPlace, setSelectedPlace] = useState('');
   const [start, setStart] = useState('');
   const [startday, setStartday] = useState('');
   const [starttime, setStarttime] = useState('');
   const [endtime, setEndtime] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function initMap() {
@@ -189,7 +199,6 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
 
 
   const handleSave = (event) => {
-    event.preventDefault(); // 폼 전송 막기
 
     // Validate user input
     if (selectedPlace.trim() === '') {
@@ -261,7 +270,7 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
       starttime: starttime,
       endtime: endtime,
       planner_id: 0,
-      user_id: 0,
+      user_id: getUser.signup_id,
     };
 
     // 원하는 정보 추가
@@ -283,7 +292,7 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // JSON 형식으로 파싱
+          return response.json();
         } else {
           throw new Error('Network response was not ok');
         }
@@ -291,17 +300,19 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
       .then((result) => {
         console.log('데이터 전송 성공:', result);
         // 필요한 경우, 성공한 후의 동작을 정의합니다.
+  
+        // 페이지 이동
+        navigate("/schedule");
+        closeModal();
       })
       .catch((error) => {
         console.error('데이터 전송 오류:', error);
         // 필요한 경우, 오류 처리를 정의합니다.
       });
-
+  
     addNewSchedule(requestData);
-
-    closeModal();
   };
-
+  
 
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
+import store from './redux/store';
 
 function Header() {
   const navigate = useNavigate();
@@ -8,6 +9,18 @@ function Header() {
   const handleLogout = () => {
     // 로그아웃 확인 알람 창
     const shouldLogout = window.confirm("로그아웃 하시겠습니까?");
+
+    store.dispatch({
+      type: 'SET_USER_INFO',
+      payload: {
+        signup_name: null,
+        signup_birth: null,
+        signup_gender: null,
+        signup_id: null,
+        signup_nickname: null,
+      },
+    });
+
 
     if (shouldLogout) {
       // 로그아웃 로직
@@ -28,7 +41,7 @@ function Header() {
   };
 
   const handleTourismClick = () => {
-    navigate("/tourism");
+    //navigate("/tourism");
   };
 
   const handleCommunityClick = () => {

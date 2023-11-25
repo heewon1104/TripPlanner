@@ -7,7 +7,30 @@ import ScheduleModal from "./ScheduleModal"
 import axios from 'axios';
 import Header from "../header";
 
+import { getUserInfo } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+
+
 function SchedulePage() {
+    const userInfo = useSelector((state) => state.user);
+    const getUser = getUserInfo();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const result = getUserInfo();
+        console.log("Main : " , result);
+
+        if(result.signup_id == null){
+        alert("로그인 후 이용가능합니다");
+        navigate("/");
+        }
+    }, [userInfo]); 
+
+    useEffect(() => {
+        const result = getUserInfo();
+        console.log("Main : " , result);
+      }, [userInfo]); 
 
     // 시간표 추가 모달창에 관한 변수
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,9 +45,6 @@ function SchedulePage() {
      // 날씨확인 모달창 열기, 닫기
     const openweatherModal = () => setWeatherModalOpen(true);
     const closweatherModal = () => setWeatherModalOpen(false);
-
-    // 경비 계산 페이지 이동 주소 
-    const navigate = useNavigate();
 
     const goToC = () => {
         navigate("/expense");
@@ -96,8 +116,8 @@ function SchedulePage() {
     const [endDate, setEndDate] = useState([]);
     const initialStartDate = new Date("2023-11-14");
     const initialEndDate = new Date("2023-12-20");
-    const locationName = "도쿄"
-    const user_id = 0
+    const locationName = "도쿄";
+    const user_id = getUser.signup_id;
 
     const addStartDate = (newData) => {
         setStartDate((prevData) => [...prevData, newData.startday]);
@@ -197,7 +217,7 @@ function SchedulePage() {
             try {
                 const response = await axios.get(`${serverHost}:${serverPort}/api/planner`, {
                     params: {
-                        user_id: user_id // user_id를 서버로 전달
+                        user_id: getUser.signup_id // user_id를 서버로 전달
                     }
                 });
                 const fetchedData = response.data; // API 응답 데이터
@@ -224,7 +244,7 @@ function SchedulePage() {
         };
 
         fetchData(); // 페이지 로드 시 데이터를 가져옴
-    }, [user_id]);
+    }, [getUser.signup_id]);
 
     function filterScheduleByWeek(scheduleData, currentWeekStartDate) {
         const endDate = new Date(currentWeekStartDate);
@@ -259,7 +279,7 @@ function SchedulePage() {
         // 스케줄 삭제를 위한 로직 작성
 
         const deleteschedule = {
-            user_id: 0,
+            user_id: getUser.signup_id,
             startday: formatDateToYYYYMMDD(schedule.startday),
             start_time: schedule.start_time
         };
@@ -304,17 +324,7 @@ function SchedulePage() {
       scheduleData={data}  />
       <PlannerWeather isOpen={WeatherModalOpen} closeModal={closweatherModal} />
       <ScheduleModal isOpen={selectedSchedule !== null} closeModal={closeScheduleModal} scheduleData={selectedSchedule}/>
-      <header className='Sheader-set align-center'>
-          <div className='align-center Title'> </div>
-          <div className='align-center Tag-list'>
-              <div className='align-center Tag'>홈</div>
-              <div className='align-center Tag'>플래너</div>
-              <div className='align-center Tag' onClick={goToC}>경비계산 / 준비물</div>
-              <div className='align-center Tag'>관광지</div>
-              <div className='align-center Tag'>커뮤니티</div>
-              <div className='align-center Tag'>오류문의</div>
-          </div>
-      </header>
+      <Header></Header>
 
       <div id="schedlue-set" className='schdule-set align-center'>
           <div className='title-list align-center'>
