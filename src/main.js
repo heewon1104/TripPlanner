@@ -5,6 +5,9 @@ import PlaceImageBox from "./PlaceImageBox";
 import Header from "./header";
 import recommendations from "./recommendations";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "./redux/actions.js";
+
 // 사용자의 생년월일에서 출생년도를 추출하여 현재 나이를 계산하는 함수
 function calculateAgeFromBirthdate(birthdate) {
   const today = new Date(); // 현재 날짜를 가져옴
@@ -20,19 +23,6 @@ function calculateAgeFromBirthdate(birthdate) {
   return Math.floor(age / 10) * 10;
 }
 
-// 사용자 정보 요청 fetch
-const fetchUserDataFromDB = async (userId) => {
-  try {
-    const response = await fetch(`/api/userinfo/${userId}`);
-    const userData = await response.json();
-
-    return userData;
-  } catch (error) {
-    console.error("오류가 발생했습니다. ", error);
-    throw error;
-  }
-};
-
 const MainPage = () => {
   // 여행날짜
   const [dDay, setDDay] = useState("");
@@ -40,16 +30,38 @@ const MainPage = () => {
   const [targetLocation, setTargetLocation] = useState("");
 
   // 사용자 정보 DB에서 받아오기(성별, 연령대)
-  const [userGender, setUserGender] = useState("women");
-  const [userAge, setUserAge] = useState(20);
-
-  // 사용자의 성별에 따라 동적으로 추천 여행지 설정
-  const userRecommendationsGender =
-    userGender === "women" ? recommendations.women : recommendations.men;
+  const [userGender, setUserGender] = useState("");
+  const [userAge, setUserAge] = useState();
+  const [userRecommendationsAge, setUserRecommendationsAge] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // 서버에서 사용자 정보 가져오기
+        const userInfoResponse = await getUserInfo(); // fetchUserInfo는 사용자 정보를 서버에서 가져오는 액션입니다.
+
+        // 사용자 정보에서 성별과 생년월일 추출
+        const userGenderFromServer = userInfoResponse.data.signup_gender;
+        const userBirthdateFromServer = userInfoResponse.data.signup_birth;
+
+        // birth 정보를 가지고 나이 계산
+        const calculatedAge = calculateAgeFromBirthdate(
+          userBirthdateFromServer
+        );
+        setUserAge(calculatedAge);
+        setUserGender(userGenderFromServer);
+
+        // 나이에 따라 동적으로 추천 여행지 설정
+        let userRecommendationsAge;
+        if (calculatedAge >= 20 && calculatedAge < 30) {
+          userRecommendationsAge = recommendations.twenties;
+        } else if (calculatedAge >= 30 && calculatedAge < 40) {
+          userRecommendationsAge = recommendations.thirties;
+        } else {
+          userRecommendationsAge = recommendations.forties;
+        }
+        // 추천 여행지 설정
+        setUserRecommendationsAge(userRecommendationsAge);
         // DB에서 여행 계획 가져오기 (D-day 계산을 위한 날짜 설정)
         const targetDate = new Date("2023-09-01");
         const today = new Date();
@@ -76,14 +88,6 @@ const MainPage = () => {
 
     fetchData();
   }, []);
-
-  // 사용자의 연령대에 따라 동적으로 추천 여행지 설정
-  const userRecommendationsAge =
-    userAge === 20
-      ? recommendations.twenties
-      : userAge === 30
-      ? recommendations.thirties
-      : recommendations.forties;
 
   return (
     <div className={styles.mainbox}>
@@ -116,9 +120,8 @@ const MainPage = () => {
               {userGender === "women" ? "여성" : "남성"} 추천 여행지 Top5
             </div>
             <div className={styles.place_image_boxes}>
-              {userRecommendationsGender &&
-              userRecommendationsGender.length > 0 ? (
-                userRecommendationsGender.map((place, index) => (
+              {userGender && userGender.length > 0 ? (
+                userGender.map((place, index) => (
                   <PlaceImageBox
                     key={index}
                     imageUrl={place.imageUrl}

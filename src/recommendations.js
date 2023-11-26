@@ -1,7 +1,26 @@
 // recommendations.js
-import busan_img from "./assets/busan.jpg";
-import paris_img from "./assets/paris.jpg";
-import tokyo_img from "./assets/busan.jpg";
+import paris_img from "./assets/paris_img.jpg";
+import tokyo_img from "./assets/tokyo_img.jpg";
+import barcelona_img from "./assets/barcelona_img.jpg";
+import newyork_img from "./assets/newyork_img.jpg";
+import bangkok_img from "./assets/bangkok_img.jpg";
+import berlin_img from "./assets/berlin_img.jpg";
+import queenstown_img from "./assets/queenstown_img.jpg";
+import rio_img from "./assets/rio_img.jpg";
+import kualalumpur_img from "./assets/kualalumpur_img.jpg";
+import prague_img from "./assets/prague_img.jpg";
+import london_img from "./assets/london_img.jpg";
+import toronto_img from "./assets/toronto_img.jpg";
+import sydney_img from "./assets/sydney_img.jpg";
+import reykjavik_img from "./assets/reykjavik_img.jpg";
+import budapest_img from "./assets/budapest_img.jpg";
+import doha_img from "./assets/doha_img.jpg";
+import shanghai_img from "./assets/shanghai_img.jpg";
+import singapore_img from "./assets/singapore_img.jpg";
+import dubai_img from "./assets/dubai_img.jpg";
+import madrid_img from "./assets/madrid_img.jpg";
+import kyushu_img from "./assets/kyushu_img.jpg";
+import copenhagen_img from "./assets/copenhagen_img.jpg";
 
 const recommendations = {
   twenties: [
@@ -11,88 +30,88 @@ const recommendations = {
       placeName: "Top1 \n Tokyo, Japan",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: barcelona_img,
       placeName: "Top2 \n Barcelona, Spain",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: newyork_img,
       placeName: "Top3 \n New York City, USA",
     },
     {
-      imageUrl: "이미지4의 URL",
+      imageUrl: bangkok_img,
       placeName: "Top4 \n Bangkok, Thailand",
     },
     {
-      imageUrl: "이미지5의 URL",
+      imageUrl: berlin_img,
       placeName: "Top5\nBerlin, Germany",
     },
   ],
   thirties: [
     //30대
     {
-      imageUrl: busan_img,
+      imageUrl: queenstown_img,
       placeName: "Top1 \n Queenstown, New Zealand",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: rio_img,
       placeName: "Top2 \n Rio de Janeiro, Brazil",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: kualalumpur_img,
       placeName: "Top3 \n Kuala Lumpur, Malaysia",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: prague_img,
       placeName: "Top4 \n Prague, Czech Republic",
     },
     {
-      imageUrl: busan_img,
+      imageUrl: london_img,
       placeName: "Top5\nLondon, UK",
     },
   ],
   forties: [
     // 40대
     {
-      imageUrl: busan_img,
+      imageUrl: toronto_img,
       placeName: "Top1 \n Toronto, Canada",
     },
     {
-      imageUrl: "이미지2의 URL",
+      imageUrl: sydney_img,
       placeName: "Top2 \n Sydney, Australia",
     },
     {
-      imageUrl: "이미지3의 URL",
+      imageUrl: reykjavik_img,
       placeName: "Top3 \n Reykjavik, Iceland",
     },
     {
-      imageUrl: "이미지4의 URL",
+      imageUrl: budapest_img,
       placeName: "Top4 \n Budapest, Hungary",
     },
     {
-      imageUrl: "이미지5의 URL",
+      imageUrl: barcelona_img,
       placeName: "Top5\nBarcelona, Spain",
     },
   ],
   men: [
     // 남성
     {
-      imageUrl: "./assets/busan.jpg",
+      imageUrl: doha_img,
       placeName: "Top1 \n Doha, Qatar",
     },
     {
-      imageUrl: "이미지2의 URL",
+      imageUrl: shanghai_img,
       placeName: "Top2 \n Shanghai, China",
     },
     {
-      imageUrl: "이미지3의 URL",
+      imageUrl: singapore_img,
       placeName: "Top3 \n Singapore",
     },
     {
-      imageUrl: "이미지4의 URL",
+      imageUrl: tokyo_img,
       placeName: "Top4 \n Tokyo, Japan",
     },
     {
-      imageUrl: "이미지5의 URL",
+      imageUrl: london_img,
       placeName: "Top5\nLondon, UK",
     },
   ],
@@ -103,19 +122,19 @@ const recommendations = {
       placeName: "Top1 \n Paris, France",
     },
     {
-      imageUrl: paris_img,
+      imageUrl: dubai_img,
       placeName: "Top2 \n Dubai, United Arab Emirates",
     },
     {
-      imageUrl: paris_img,
-      placeName: "Top3 \n Plaza Mayor, Spain",
+      imageUrl: madrid_img,
+      placeName: "Top3 \n Madrid, Spain",
     },
     {
-      imageUrl: paris_img,
+      imageUrl: kyushu_img,
       placeName: "Top4 \n Kyushu, Japan",
     },
     {
-      imageUrl: paris_img,
+      imageUrl: copenhagen_img,
       placeName: "Top5\nCopenhagen, Denmark",
     },
   ],

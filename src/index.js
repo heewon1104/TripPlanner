@@ -11,9 +11,12 @@ import reportWebVitals from "./reportWebVitals";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 
-const store = configureStore({
+import store from "./redux/store";
+
+// Redux Store 생성
+const reduxStore = configureStore({
   reducer: rootReducer,
-  middleware: [promiseMiddleware, ReduxThunk],
+  // middleware: [promiseMiddleware, ReduxThunk], // 필요에 따라 middleware를 여기서 설정
   // devTools: process.env.NODE_ENV !== "production", // 개발 환경에서만 DevTools 활성화
 });
 
