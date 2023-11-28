@@ -3,7 +3,7 @@ import { LOGIN_USER, REGISTER_USER } from "./types";
 
 const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
 const loginserverPort = 81; 
-const signupserverPort = 80; 
+const signupserverPort = 82; 
 
 export function loginUser(dataToSubmit) {
   console.log(`${serverHost}:${loginserverPort}/api/login_page`);

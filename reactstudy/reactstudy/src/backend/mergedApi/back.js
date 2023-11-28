@@ -3,7 +3,7 @@ import router from "./router.js";
 import cors from "cors";
 
 const app = express();
-const PORT = 80;
+const PORT = 82;
 
 app.use(cors({
   origin: 'http://localhost:3000',

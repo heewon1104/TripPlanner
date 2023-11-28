@@ -2,7 +2,7 @@ import axios from 'axios';
 import reduxStore from './store'; // store 변수의 이름 변경
 
 const serverHost = 'http://localhost';
-const serverPort = 80;
+const serverPort = 82;
 
 export const setUserInfo = (userInfo) => ({
   type: 'SET_USER_INFO',
@@ -36,22 +36,22 @@ export const getUserInfo = (userId) => {
 }
 
 
-export const handleSessionExpiration = () => {
-  const isSessionExpired = checkSessionExpiration() === null;
+// export const handleSessionExpiration = () => {
+//   const isSessionExpired = checkSessionExpiration() === null;
 
-  if (isSessionExpired) {
-    // 세션 만료 시 사용자 정보 초기화
-    const nullUserInfo = {
-      signup_name: null,
-      signup_birth: null,
-      signup_gender: null,
-      signup_id: null,
-      signup_nickname: null,
-    };
+//   if (isSessionExpired) {
+//     // 세션 만료 시 사용자 정보 초기화
+//     const nullUserInfo = {
+//       signup_name: null,
+//       signup_birth: null,
+//       signup_gender: null,
+//       signup_id: null,
+//       signup_nickname: null,
+//     };
 
-    // store 변수 대신에 reduxStore를 사용
-    reduxStore.dispatch(setUserInfo(nullUserInfo));
+//     // store 변수 대신에 reduxStore를 사용
+//     reduxStore.dispatch(setUserInfo(nullUserInfo));
 
-    console.log("Session expired. User info reset.");
-  }
-};
+//     console.log("Session expired. User info reset.");
+//   }
+// };

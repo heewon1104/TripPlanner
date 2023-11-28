@@ -166,7 +166,7 @@ function SchedulePage() {
         const formattedDate = date?.toLocaleDateString('ko-KR');
         const dayOfWeek = weekDays[date?.getDay() || 0];
       
-        return `${dayOfWeek} ${formattedDate}`;
+        return `${formattedDate} ${dayOfWeek}`;
     }
 
     function formatDate(date) {
@@ -210,7 +210,7 @@ function SchedulePage() {
     };
     
     const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
-    const serverPort = 80; 
+    const serverPort = 82; 
 
      useEffect(() => {
         const fetchData = async () => {
@@ -332,11 +332,11 @@ function SchedulePage() {
               <button className='weather-button' onClick={openweatherModal}> 해당도시 날씨 확인하기</button>
           </div>
           <div className="week-button-list align-center">
-              <button className="week-button-prev" onClick={goToPreviousWeek}>이전주</button>
-              <button className="week-button-next" onClick={goToNextWeek}>다음주</button>
+              <button className="add-schedule-item" onClick={openModal}>시간표 추가</button>
           </div>
           <div className="week-button-list align-center">
-              <button className="add-schedule-item" onClick={openModal}>시간표 추가</button>
+              <button className="week-button-prev" onClick={goToPreviousWeek}>이전주</button>
+              <button className="week-button-next" onClick={goToNextWeek}>다음주</button>
           </div>
               <div className='schdule align-center'>
                   <div className='schdule-item align-center'>
@@ -376,22 +376,23 @@ function SchedulePage() {
                                           key={item.index}
                                           className={`schdule-content-add ${isDataEmpty ? 'hidden' : ''}`}
                                           style={{
-                                              top: isDataEmpty ? '0%' : `${44 + item.topmargin * 0.8}px`,
+                                              top: isDataEmpty ? '0%' : `${54 + item.topmargin * 0.8}px`,
                                               display: isDataEmpty ? 'none' : 'block',
                                               height: isDataEmpty ? '0px' : `${item.subtime * 0.8}px`,
                                           }}
                                           onClick={() => openScheduleModal(item)}
                                       >
-                                          <p>위치: {item.start}</p>
                                           <div className="schedule-actions">
-                                              <button onClick={(e) => {
-                                                  e.stopPropagation(); // 이벤트 전파 막음
-                                                  handleEditSchedule(item);
-                                              }}>수정</button>
-                                              <button onClick={(e) => {
+                                            <button onClick={(e) => {
                                                   e.stopPropagation(); // 이벤트 전파 막음
                                                   handleDeleteSchedule(item);
-                                              }}>삭제</button>
+                                              }}>X</button>
+                                            <p>위치: {item.start}</p>
+                                              {/* <button onClick={(e) => {
+                                                  e.stopPropagation(); // 이벤트 전파 막음
+                                                  handleEditSchedule(item);
+                                              }}>수정</button> */}
+                                        
                                           </div>
                                       </div>
                                   );

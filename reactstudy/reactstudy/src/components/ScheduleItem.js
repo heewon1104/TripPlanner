@@ -281,7 +281,7 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
 
     // 서버로 데이터 전송
     const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
-    const serverPort = 80; // 서버가 3000번 포트에서 실행되고 있는 경우
+    const serverPort = 82; // 서버가 3000번 포트에서 실행되고 있는 경우
 
     fetch(`${serverHost}:${serverPort}/api/schedule`, {
       method: 'POST',

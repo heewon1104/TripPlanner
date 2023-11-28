@@ -11,7 +11,11 @@ const createConnection = async () => {
     return connection;
 };
   
-const db = await createConnection();
+let db;
+(async () => {
+    db = await createConnection();
+})();
+
  
 const postSchedule = async (req , res) => { // 비동기 함수로 변경
 

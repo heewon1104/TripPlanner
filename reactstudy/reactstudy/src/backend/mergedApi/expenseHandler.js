@@ -14,8 +14,11 @@ const createConnection = async () => {
     return connection;
   };
   
-  const db = await createConnection();
-
+  let db;
+  (async () => {
+      db = await createConnection();
+  })();
+  
 const getExpense = async (req, res) => {
     try {
         const userId = req.query.user_id;

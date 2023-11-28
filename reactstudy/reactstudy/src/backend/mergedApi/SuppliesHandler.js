@@ -12,11 +12,13 @@ const createConnection = async () => {
       database: 'testusers',
     });
 
-    
     return connection;
   };
   
-  const db = await createConnection();
+  let db;
+  (async () => {
+      db = await createConnection();
+  })();
 
 const getSupplies = async (req, res) => {
     try {

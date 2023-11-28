@@ -21,7 +21,7 @@ function LoginPage() {
 
   const serverHost = "http://localhost";
   const loginserverPort = 81;
-  const serverPort = 80;
+  const serverPort = 82;
 
   useEffect(() => {
     // useEffect 내부에서 userInfo가 변경될 때마다 실행됩니다.

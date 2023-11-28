@@ -12,11 +12,7 @@ const createConnection = async () => {
     return connection;
   };
   
-  let db;
-  (async () => {
-      db = await createConnection();
-  })();
-  
+  const db = await createConnection();
 
 const getUserInfo = async (req, res) => {
     try {
