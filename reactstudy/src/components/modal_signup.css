@@ -1,0 +1,65 @@
+.simple_logo {
+  width: 50px;
+  margin-right: 5px;
+}
+
+.signup_box {
+  /*text-align: center;*/
+  border: 1px solid #f1f3f4;
+  /*background-color: #f1f3f4;*/
+  border-radius: 10px;
+  padding: 10px 0 10px 20px;
+  margin-bottom: 5px;
+}
+
+.input_box {
+  display: inline-block;
+  margin: 10px 0 10px 10px;
+}
+.signup_txt {
+  border-right: 1px solid gray;
+  width: 120px;
+}
+.signup_input_gender {
+  display: flex; /* Flex 컨테이너로 설정하여 아이템을 한 줄에 정렬 */
+  align-items: center; /* 수직 정렬을 가운데로 설정 */
+  margin-bottom: 5px; /* 아래쪽 여백을 추가*/
+}
+.input {
+  border: none;
+  margin-left: 20px;
+}
+.input_radio {
+  margin-right: 5px;
+  width: 13px;
+  height: 13px;
+}
+
+input[type="radio"] {
+  margin: -1px 3px 0 15px;
+}
+.btn_signup {
+  float: right;
+  margin-top: 10px;
+}
+#btn_signup_ok {
+  width: 134px;
+  height: 40px;
+  background-color: #0099a4;
+  border: none;
+  border-radius: 7px;
+  opacity: 0.7;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+.error_message {
+  color: blue;
+  font-size: 12px;
+}
+.footer {
+  height: 50px;
+}

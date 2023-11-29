@@ -1,0 +1,26 @@
+{
+  "name": "oyr_project",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "trip planner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lee",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-mysql-session": "^3.0.0",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pbkdf2-password": "^1.2.1",
+    "save": "^2.9.0",
+    "session-memory-store": "^1.0.0"
+  }
+}
