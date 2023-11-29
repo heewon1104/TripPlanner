@@ -4,10 +4,10 @@ import { DB_HOST, DB_PASSWORD, DB_DATABASE_NAME, DB_USER } from "./env.js"
 
 const createConnection = async () => {
     const connection = await mysql.createConnection({
-        host: 'jhdb98.cuy7pwybpmhj.ap-northeast-2.rds.amazonaws.com',
-        user: 'manager2',
-        password: 'manager2!',
-        database: 'testusers',
+        host: DB_HOST,
+        user: DB_USER,
+        password: DB_PASSWORD,
+        database: DB_DATABASE_NAME,
     });
 
     console.log("db Success");
@@ -15,7 +15,10 @@ const createConnection = async () => {
     return connection;
 };
 
-const db = await createConnection();
+let db;
+(async () => {
+    db = await createConnection();
+})();
 
 const Signup = async (req, res) => {
     try {

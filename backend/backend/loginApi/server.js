@@ -8,7 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cors = require("cors");
 require("dotenv").config();
-
+import { DB_HOST, DB_PASSWORD, DB_DATABASE_NAME, DB_USER, SECRETKEY } from "./env.js"
 const app = express();
 const port = 81;
 
@@ -19,10 +19,10 @@ app.listen(port, () => {
 
 // MySQL 연결 설정
 const db = mysql.createConnection({
-  host: 'jhdb98.cuy7pwybpmhj.ap-northeast-2.rds.amazonaws.com',
-  user: 'manager2',
-  password: 'manager2!',
-  database: 'testusers'
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE_NAME
 });
 
 // MySQL 연결 테스트
@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: "MNEO827&@&*MO%$^@&***&^&^%$(*(--=))", // 세션 암호화를 위한 비밀 키
+    secret: SECRETKEY, // 세션 암호화를 위한 비밀 키
     resave: false,
     saveUninitialized: true,
     expiration: 3600000, // 세션 만료 시간 (1시간)
@@ -48,10 +48,10 @@ app.use(
       tableName: "sessions",
     },
     store: new MySQLStore({
-      host: 'jhdb98.cuy7pwybpmhj.ap-northeast-2.rds.amazonaws.com',
-      user: 'manager2',
-      password: 'manager2!',
-      database: 'testusers',
+      host: DB_HOST,
+      user: DB_USER,
+      password: DB_PASSWORD,
+      database: DB_DATABASE_NAME,
     }),
   })
 );
