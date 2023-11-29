@@ -2,7 +2,7 @@ import styles from "./login.module.css";
 import React, { useState } from "react";
 import logo_img from "./assets/logo.PNG";
 import Modalsignup from "./modal_signup";
-import Button_bst from "react-bootstrap/Button";
+import BUTTON_BST from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -42,7 +42,7 @@ function LoginPage() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      console.log("Form Values:", values);
+      //console.log("Form Values:", values);
       if (!values.login_id || !values.login_password) {
         alert("아이디와 비밀번호를 입력해주세요.");
         setSubmitting(false);
@@ -66,7 +66,8 @@ function LoginPage() {
           dispatch(fetchUserInfo(values.login_id)).then(() => {
             const result = getUserInfo();
             console.log("Login : ", result);
-            reactNavigate.navigate("/main");
+            reactNavigate("/main");
+            alert("로그인 성공");
           });
         } else {
           if (loginResponse.data.msg === "user_id") {
@@ -165,7 +166,7 @@ function LoginPage() {
               </button>
               <div className={styles.home_box3}>
                 <div>
-                  <Button_bst
+                  <BUTTON_BST
                     id={styles.btn_signup}
                     variant="primary"
                     onClick={() => {
@@ -173,8 +174,9 @@ function LoginPage() {
                     }}
                   >
                     Sign up
-                  </Button_bst>
+                  </BUTTON_BST>
                   <Modalsignup
+                    className={styles.modal}
                     show={modalOpen}
                     onHide={() => setModalOpen(false)}
                   />

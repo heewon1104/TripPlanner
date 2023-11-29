@@ -5,7 +5,6 @@ import PlaceImageBox from "./PlaceImageBox";
 import Header from "./header";
 import recommendations from "./recommendations";
 
-import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "./redux/actions.js";
 
 // 사용자의 생년월일에서 출생년도를 추출하여 현재 나이를 계산하는 함수
@@ -32,7 +31,10 @@ const MainPage = () => {
   // 사용자 정보 DB에서 받아오기(성별, 연령대)
   const [userGender, setUserGender] = useState("");
   const [userAge, setUserAge] = useState();
+  const [userPlanner, setUserPlanner] = useState();
   const [userRecommendationsAge, setUserRecommendationsAge] = useState();
+  const [userRecommendationsGender, setUserRecommendationsGender] =
+    useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,9 +42,10 @@ const MainPage = () => {
         // 서버에서 사용자 정보 가져오기
         const userInfoResponse = await getUserInfo(); // fetchUserInfo는 사용자 정보를 서버에서 가져오는 액션입니다.
 
-        // 사용자 정보에서 성별과 생년월일 추출
-        const userGenderFromServer = userInfoResponse.data.signup_gender;
-        const userBirthdateFromServer = userInfoResponse.data.signup_birth;
+        // 사용자 정보에서 성별과 생년월일 추출, 플래너 여부 추출
+        const userGenderFromServer = userInfoResponse.signup_gender;
+        const userBirthdateFromServer = userInfoResponse.signup_birth;
+        const userPlannernum = userInfoResponse.planner;
 
         // birth 정보를 가지고 나이 계산
         const calculatedAge = calculateAgeFromBirthdate(
@@ -50,6 +53,7 @@ const MainPage = () => {
         );
         setUserAge(calculatedAge);
         setUserGender(userGenderFromServer);
+        console.log(userGender);
 
         // 나이에 따라 동적으로 추천 여행지 설정
         let userRecommendationsAge;
@@ -62,6 +66,21 @@ const MainPage = () => {
         }
         // 추천 여행지 설정
         setUserRecommendationsAge(userRecommendationsAge);
+
+        //성별에 따라 동적으로 추천 여행지 설정
+        let userRecommendationsGender;
+        if (userGender === "woman") {
+          userRecommendationsGender = recommendations.woman;
+        } else if (userGender === "man") {
+          userRecommendationsGender = recommendations.man;
+        }
+        setUserRecommendationsGender(userRecommendationsGender);
+        console.log(userRecommendationsGender);
+
+        //플래너 여부 저장
+        setUserPlanner(userPlannernum);
+        //플래너 여부에 따른 동적 화면 -추후 구현예정
+
         // DB에서 여행 계획 가져오기 (D-day 계산을 위한 날짜 설정)
         const targetDate = new Date("2023-09-01");
         const today = new Date();
@@ -87,7 +106,7 @@ const MainPage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [userGender]);
 
   return (
     <div className={styles.mainbox}>
@@ -100,7 +119,7 @@ const MainPage = () => {
           <div className={styles.img_body}></div>
           {/* 디데이 */}
           <Link
-            to={`/planner?place=${targetLocation}`}
+            to={`/schedule`}
             className={`${styles.d_day_box} ${styles.align_center}`}
           >
             <div className={styles.d_day_txt}>My Trip</div>
@@ -117,11 +136,12 @@ const MainPage = () => {
         <div className={styles.content2}>
           <div className={styles.content2_}>
             <div className={`${styles.place_gender} ${styles.content2_txt}`}>
-              {userGender === "women" ? "여성" : "남성"} 추천 여행지 Top5
+              {userGender === "woman" ? "여성" : "남성"} 추천 여행지 Top5
             </div>
             <div className={styles.place_image_boxes}>
-              {userGender && userGender.length > 0 ? (
-                userGender.map((place, index) => (
+              {userRecommendationsGender &&
+              userRecommendationsGender.length > 0 ? (
+                userRecommendationsGender.map((place, index) => (
                   <PlaceImageBox
                     key={index}
                     imageUrl={place.imageUrl}

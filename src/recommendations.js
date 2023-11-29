@@ -92,7 +92,7 @@ const recommendations = {
       placeName: "Top5\nBarcelona, Spain",
     },
   ],
-  men: [
+  man: [
     // 남성
     {
       imageUrl: doha_img,
@@ -115,7 +115,7 @@ const recommendations = {
       placeName: "Top5\nLondon, UK",
     },
   ],
-  women: [
+  woman: [
     // 여성
     {
       imageUrl: paris_img,

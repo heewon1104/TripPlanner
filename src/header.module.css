@@ -12,9 +12,9 @@
   height: 15%;
 }
 .Title {
-  width: 30vw;
-  height: 30vh;
-  padding-top: 10px;
+  width: 50vw;
+  height: 50vh;
+  padding-top: 20px;
   margin-top: 0px;
   background-image: url("./assets/logo2.PNG");
   background-size: contain;

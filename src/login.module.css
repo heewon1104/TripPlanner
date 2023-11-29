@@ -105,7 +105,9 @@
   line-height: 18px;
   text-align: center;
 }
-
+.modal {
+  z-index: 1500;
+}
 .copyright {
   margin-top: 50px;
   text-align: center;

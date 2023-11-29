@@ -15,7 +15,7 @@ function Header() {
         const userInfoResponse = await getUserInfo(); // fetchUserInfo는 사용자 정보를 서버에서 가져오는 액션입니다.
 
         // 사용자 정보에서 닉네임 추출
-        const userNicknameFromServer = userInfoResponse.data.signup_nickname;
+        const userNicknameFromServer = userInfoResponse.signup_nickname;
 
         setUserNickname(userNicknameFromServer);
       } catch (error) {

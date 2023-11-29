@@ -32,37 +32,31 @@ const validationSchema = Yup.object().shape({
 });
 
 function Modalsignup(props) {
-  const dispatch = useDispatch();
+  const serverHost = "http://localhost"; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
+  const loginserverPort = 81;
+  const signupserverPort = 80;
 
   const onSubmitHandler = (values, { setSubmitting }) => {
-    console.log("Submitted Form Values:", values);
-    dispatch(registerUser(values))
+    //console.log("Submitted Form Values:", values);
+
+    fetch(`${serverHost}:${signupserverPort}/api/signup_page`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
       .then((response) => {
-        console.log("Server Response:", response); // 서버 응답 로그를 추가
-        if (response.payload.success) {
+        console.log("Server Response:", response);
+        if (response.ok) {
           props.onHide();
           alert("회원가입 되었습니다.");
-        } else {
-          alert("Error: " + response.payload.message); // 서버에서 전달한 오류 메시지 출력
-        }
-        setSubmitting(false); //formik의 submit 상태를 변경하는 메소드
-        //true -> form 제출중 / false -> form 제출중이 아님
-      })
-
-      .catch((error) => {
-        console.error("Server Error:", error);
-        if (error.response) {
-          const errorMessage = error.response.data?.message; // 서버로부터 받은 오류 메시지 정의
-          if (error.response.status === 400) {
-            if (errorMessage === "이미 사용중인 ID 입니다.") {
-              alert("이미 사용중인 ID입니다!");
-            } else if (errorMessage === "이미 사용중인 Nickname 입니다.") {
-              alert("이미 사용중인 Nickname 입니다.");
-            }
-          } else if (
-            error.response.status === 404 ||
-            error.response.status === 500
-          ) {
+        } else if (response) {
+          if (response.status === 400) {
+            alert("이미 사용중인 ID입니다!");
+          } else if (response.status === 401) {
+            alert("이미 사용중인 Nickname 입니다.");
+          } else if (response.status === 404 || response.status === 500) {
             alert("서버를 찾을 수 없습니다. 관리자에게 문의하세요.");
           } else {
             alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
@@ -72,6 +66,11 @@ function Modalsignup(props) {
             "서버 요청 중에 오류가 발생했습니다. 네트워크 상태를 확인하세요."
           );
         }
+        setSubmitting(false);
+      })
+
+      .catch((error) => {
+        console.error("Server Error:", error);
         setSubmitting(false);
       });
   };
