@@ -19,18 +19,12 @@ function SchedulePage() {
 
     useEffect(() => {
         const result = getUserInfo();
-        console.log("Main : " , result);
 
         if(result.signup_id == null){
         alert("로그인 후 이용가능합니다");
         navigate("/");
         }
     }, [userInfo]); 
-
-    useEffect(() => {
-        const result = getUserInfo();
-        console.log("Main : " , result);
-      }, [userInfo]); 
 
     // 시간표 추가 모달창에 관한 변수
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -105,7 +99,7 @@ function SchedulePage() {
       };
 
       useEffect(() => {
-        console.log(data); // data 배열의 최신 값을 출력
+        //console.log(data); // data 배열의 최신 값을 출력
       }, [data]); 
 
     // 배열이 비어있는 상태
@@ -134,8 +128,6 @@ function SchedulePage() {
         // 0: 일요일, 1: 월요일, ... , 6: 토요일
         newData.StartDayofweek = new Date(newData.startday).getDay();
         newData.EndDayofweek = new Date(newData.endday).getDay();
-
-        console.log(newData);
     }, []);
 
     // startdate와 enddate 사이의 날짜들을 주 단위로 가져오는 함수를 만듭니다.
@@ -260,7 +252,6 @@ function SchedulePage() {
   const [editedSchedule, setEditedSchedule] = useState(null);
 
     const handleEditSchedule = (schedule) => {
-        console.log(schedule)
         setEditedSchedule(schedule); // 선택한 스케줄 정보를 상태에 저장
         openModal(); // 모달 창 열기
     };
@@ -275,7 +266,7 @@ function SchedulePage() {
       
     // 스케줄 삭제 함수
     const handleDeleteSchedule = (schedule) => {
-        console.log(schedule)
+        //console.log(schedule)
         // 스케줄 삭제를 위한 로직 작성
 
         const deleteschedule = {

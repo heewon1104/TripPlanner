@@ -44,7 +44,6 @@ const MainPage = () => {
 
   useEffect(() => {
     const result = getUserInfo();
-    console.log("Main : " , result);
 
     if(result.signup_id == null){
       alert("로그인 후 이용가능합니다");
@@ -69,7 +68,6 @@ const MainPage = () => {
         );
         setUserAge(calculatedAge);
         setUserGender(userGenderFromServer);
-        console.log(userGender);
 
         // 나이에 따라 동적으로 추천 여행지 설정
         let userRecommendationsAge;
@@ -91,7 +89,6 @@ const MainPage = () => {
           userRecommendationsGender = recommendations.man;
         }
         setUserRecommendationsGender(userRecommendationsGender);
-        console.log(userRecommendationsGender);
 
         //플래너 여부 저장
         setUserPlanner(userPlannernum);

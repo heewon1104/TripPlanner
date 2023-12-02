@@ -36,7 +36,6 @@ function Modalsignup(props) {
   const signupserverPort = 82; 
 
   const onSubmitHandler = (values, { setSubmitting }) => {
-    console.log("Submitted Form Values:", values);
 
     fetch(`${serverHost}:${signupserverPort}/api/signup_page`, {
       method: 'POST',
@@ -46,7 +45,6 @@ function Modalsignup(props) {
       body: JSON.stringify(values), 
     })
       .then((response) => {
-        console.log("Server Response:", response);
         if (response.ok) {
           props.onHide();
           alert("회원가입 되었습니다.");

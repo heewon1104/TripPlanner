@@ -35,10 +35,8 @@ function Modalsignup(props) {
   const dispatch = useDispatch();
 
   const onSubmitHandler = (values, { setSubmitting }) => {
-    console.log("Submitted Form Values:", values);
     dispatch(registerUser(values))
       .then((response) => {
-        console.log("Server Response:", response); // 서버 응답 로그를 추가
         if (response.payload.success) {
           props.onHide();
           alert("회원가입 되었습니다.");

@@ -4,7 +4,6 @@ import styles from './ScheduleModal.module.css'; // CSS 모듈 불러오기
 
 function ScheduleModal({ isOpen, closeModal, scheduleData }) {
   useEffect(() => {
-    console.log(scheduleData);
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {

@@ -23,7 +23,6 @@ export const fetchUserInfo = (userId) => {
       // store 변수 대신에 reduxStore를 사용
       dispatch(setUserInfo(userInfo));
 
-      console.log("Current User Info At redux:", userInfo);
     } catch (error) {
       console.error('Error fetching user info:', error);
     }
@@ -31,7 +30,6 @@ export const fetchUserInfo = (userId) => {
 };
 
 export const getUserInfo = (userId) => {
-  console.log("Redux State after setUserInfo:", reduxStore.getState());
   return reduxStore.getState();
 }
 

@@ -53,7 +53,7 @@ export const checkSessionExpiration = () => {
     const expirationTime = Date.now() + (1 * 10); // 토큰의 만료 시간
     const currentTime = Date.now(); // 현재 시간
 
-    console.log("시간 :" , expirationTime, currentTime);
+    //console.log("시간 :" , expirationTime, currentTime);
 
     if (currentTime > expirationTime) {
       return null; // 토큰이 만료되었으면 null 반환

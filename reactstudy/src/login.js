@@ -23,13 +23,6 @@ function LoginPage() {
   const loginserverPort = 81;
   const serverPort = 82;
 
-  useEffect(() => {
-    // useEffect 내부에서 userInfo가 변경될 때마다 실행됩니다.
-    console.log("Current User Info At Login:", userInfo);
-    // 여기에서 다른 작업을 수행할 수 있습니다.
-    // 예를 들어, navigate("/main");을 여기에 이동시키면 됩니다.
-  }, [userInfo]); 
-
   const validationSchema = Yup.object().shape({
     login_id: Yup.string().required("아이디를 입력하세요."),
     login_password: Yup.string().required("비밀번호를 입력하세요."),
@@ -42,7 +35,6 @@ function LoginPage() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      console.log("Form Values:", values);
       if (!values.login_id || !values.login_password) {
         alert("아이디와 비밀번호를 입력해주세요.");
         setSubmitting(false);
@@ -58,15 +50,11 @@ function LoginPage() {
           }
         );
 
-        console.log(loginResponse);
-
         if (loginResponse.data.success) {
           sessionStorage.setItem("user_id", values.login_id);
 
           dispatch(fetchUserInfo(values.login_id))
             .then(() => {
-              const result = getUserInfo();
-              console.log("Login : " , result);
               navigate("/main");
             });
         } else {

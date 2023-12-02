@@ -5,6 +5,7 @@ import { useState } from 'react';
 import './ScheduleItem.css'
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {GoogleMapApiKey} from './GooglemapApiKey';
 
 import { getUserInfo } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -136,7 +137,7 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
 
     // Load Google Maps API script and call initMap() when loaded
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAyZffxPv5S2NP2NEp_31-HH9XmDwSEWbM&callback=initMap&libraries=places&v=weekly`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GoogleMapApiKey}&callback=initMap&libraries=places&v=weekly`;
     script.defer = true;
     document.body.appendChild(script);
 
@@ -250,12 +251,8 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
         userStartTime < scheduleStartTime &&
         userEndTime > scheduleEndTime;
 
-      console.log(isEndTimeOverlap, isStartTimeOverlap, isStartTimeBeforeAndEndTimeAfter);
-
       return isEndTimeOverlap || isStartTimeOverlap || isStartTimeBeforeAndEndTimeAfter;
     });
-
-    console.log(isOverlap);
 
     if (isOverlap) {
       window.alert("이미 일정과 겹칩니다.");
@@ -298,7 +295,7 @@ function ScheduleItem({ isOpen, closeModal, onSave, editedSchedule, addNewSchedu
         }
       })
       .then((result) => {
-        console.log('데이터 전송 성공:', result);
+        //console.log('데이터 전송 성공:', result);
         // 필요한 경우, 성공한 후의 동작을 정의합니다.
   
         // 페이지 이동

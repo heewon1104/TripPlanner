@@ -21,7 +21,6 @@ function ExpenseCalculationAndSupplies() {
 
     useEffect(() => {
         const result = getUserInfo();
-        console.log("Main : " , result);
 
         if(result.signup_id == null){
         alert("로그인 후 이용가능합니다");
@@ -366,7 +365,6 @@ function ExpenseCalculationAndSupplies() {
             }
     
             setSuppliesData((prevSuppliesData) => {
-                console.log(updatedSupplies.title);
                 const updatedData = [...prevSuppliesData];
                 updatedData[selectedSuppliesIndex].title = updatedSupplies.edittitle;
                 return updatedData;

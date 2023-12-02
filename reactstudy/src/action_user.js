@@ -5,9 +5,8 @@ const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 �
 const loginserverPort = 81; 
 const signupserverPort = 82; 
 
-export function loginUser(dataToSubmit) {
-  console.log(`${serverHost}:${loginserverPort}/api/login_page`);
 
+export function loginUser(dataToSubmit) {
   fetch(`${serverHost}:${loginserverPort}/api/login_page`, {
     method: 'POST',
     headers: {
@@ -23,7 +22,7 @@ export function loginUser(dataToSubmit) {
       }
     })
     .then((result) => {
-      console.log('데이터 전송 성공:', result);
+      //console.log('데이터 전송 성공:', result);
     })
     .catch((error) => {
       console.error('데이터 전송 오류:', error);
@@ -47,13 +46,13 @@ export function registerUser(dataToSubmit) {
       }
     })
     .then((result) => {
-      console.log('데이터 전송 성공:', result);
+      //console.log('데이터 전송 성공:', result);
     })
     .catch((error) => {
       if(error == "Error: Network response was not ok")
         console.log("true");
       else
-        console.log(error);
+      console.log(error);
       console.error('데이터 전송 오류:', error);
     });
 }
