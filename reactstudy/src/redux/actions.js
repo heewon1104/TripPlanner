@@ -1,7 +1,7 @@
 import axios from 'axios';
 import reduxStore from './store'; // store 변수의 이름 변경
 
-const serverHost = 'http://localhost';
+const serverHost = 'http://13.239.138.191';
 const serverPort = 82;
 
 export const setUserInfo = (userInfo) => ({

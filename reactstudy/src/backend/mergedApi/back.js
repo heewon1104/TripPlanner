@@ -6,7 +6,7 @@ const app = express();
 const PORT = 82;
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: "http://13.239.138.191",
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,UPDATE',
   credentials: true,
 }));

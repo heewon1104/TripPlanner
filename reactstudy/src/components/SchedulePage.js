@@ -201,7 +201,7 @@ function SchedulePage() {
         setCurrentWeekStartDate(nextWeekStartDate);
     };
     
-    const serverHost = 'http://localhost'; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
+    const serverHost = "http://13.239.138.191"; // 클라이언트와 서버가 같은 컴퓨터에서 실행되는 경우
     const serverPort = 82; 
 
      useEffect(() => {

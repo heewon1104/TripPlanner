@@ -19,7 +19,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
 
-  const serverHost = "http://localhost";
+  const serverHost = "http://13.239.138.191";
   const loginserverPort = 81;
   const serverPort = 82;
 

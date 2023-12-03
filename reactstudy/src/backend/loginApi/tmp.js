@@ -6,7 +6,7 @@ const app = express()
 const PORT = 80
 
 app.use(cors({
-    origin: 'http://localhost:3000', // 클라이언트 주소
+    origin: "http://13.239.138.191", // 클라이언트 주소
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,UPDATE',
     credentials: true, // 필요에 따라 설정
   }));
